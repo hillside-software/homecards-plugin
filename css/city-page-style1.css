@@ -1,0 +1,22 @@
+	h1.hc_pagetitle {font-size: 32px;}
+	.hc_SHeader h2 {font-weight: 700;}
+	.hc_HouseInfo {display: block !important;}
+	.hc_SCDescript {display: none !important;}
+	.hc_Section {height: 100px;}
+	.imageSection { width: 110px !important; height: 90px; padding: 6px 0 0 0; float: left; position: absolute;}
+	/*.imageFrame { width: 108px !important; height: 80px; background: url(images/image-frame.png) top no-repeat; margin: 4px 0 0 6px; text-align: left;}*/
+	.imagePosition { width: 90px !important; margin: 0 0 0 14px; padding: 0px 0 0 0;}
+	.imagePosition img {border: 5px solid #fff; width: 120px; box-shadow: 0 0 5px #8e8e8e;}
+	.searchBackground  {height: 145px;}
+	.hc_viewDetails {float: left;}
+	.hc_addFav {float: left; display: none;}
+	.hc_mapSearch {display: none;}
+
+	/* Stats table */
+	table.HCLocalStatsTable { border-collapse: collapse; width: 600px; margin: 10% 0 0 0; background: #eee; }
+	table.HCLocalStatsTable tr, table.HCLocalStatsTable td { border: 1px solid #c0c1c3; }
+	table.HCLocalStatsTable tr th { font-size: 22px; line-height: 30px; font-weight: 700; text-align: center; color: #3e3e3e; background: url(images/stats-header-bg.png) repeat-x; }
+	td.HCLocalStatsCaption, table.HCLocalStatsTable td { line-height: 30px; }
+	td.HCLocalStatsCaption { font-size: 14px; font-weight: 700; text-align: right !important; padding: 0 15px 0 0; }
+	table.HCLocalStatsTable td { text-align: center; width: 150px !important; }
+

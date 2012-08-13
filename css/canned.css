@@ -1,0 +1,16 @@
+.hc-available-fields li {
+    display: inline-block;
+    vertical-align: top;
+}
+
+.hc-drag-start {
+    width: 99% !important;
+}
+
+.hc_horses_parent, .hc_style_parent, .hc_bsm_parent, .hc_const_parent, .hc_zip_parent, .hc_jrhi_parent, .hc_srhi_parent, .hc_elem_parent {
+    visibility: hidden;
+    display: none;
+		width: 0 !important;
+		height: 0 !important;
+}
+

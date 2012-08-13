@@ -1,0 +1,84 @@
+
+body { background: #f1f1f1; margin: 0; padding: 0; font: normal 12px "Trebuchet MS", "Lucida Sans Unicode", Tahoma, Serif; line-height: 14px; margin: 0px; padding: 0px; }
+p { line-height: 14px; margin: 0px; padding: 0px; }
+div { margin: 0; padding: 0; }
+
+div.parent-container { width: 100%; display: block; }
+
+div.first-child-container { width: 610px; height: 40px; display: block; position: relative; z-index: 2000;}
+
+div.toolbar-container { width: 100%; height: 39px; display: block; background: url(images/toolbar-bg.png) repeat-x; margin: 20px 2px 2px 2px; box-shadow: 0 0 3px #8e8e8e; border-bottom: 1px solid #9e9e9e; }
+
+div.toolbar-container div { margin: 0px; display: inline-block; }
+div.toolbar-container div ul, div.toolbar-child ul li { margin: 0 2px; padding: 0; list-style-type: none; float: left; }
+div.toolbar-container div li { width: 120px; display: inline-block; line-height: 39px; float: left; }
+
+/*div.toolbar-child-element { text-align: left; padding: 0 0 0 40px; }*/
+.hc-tab a div { line-height: 38px; font-size: 11px; color: #484848; text-shadow: 1px 1px 1px #f2f2f2; }
+.hc-tab a .hc-font-icon {font-size: 17px;}
+
+div.toolbar-container div a,
+div.toolbar-container div a:active,
+div.toolbar-container div a:visited, 
+div.toolbar-container div a:hover { line-height: 39px !important; color: #5e5e5e; display: block; text-decoration: none; }
+
+/* Disable the Local Stats Toolbar Button */
+.tb-1 {display: none !important;}
+
+/*.tb-1 li, .tb-1 a, .tb-1 a:active, .tb-1 a:visited { background: url(images/tb-sprite.png) no-repeat; background-position: 5px -167px; }
+.tb-1 a:hover { background: url(images/tb-sprite.png) no-repeat; background-position: 5px 3px; }
+.tb-2 li, .tb-2 a, .tb-2 a:active, .tb-2 a:visited { background: url(images/tb-sprite.png) no-repeat; background-position: 5px -201px; }
+.tb-2 a:hover { background: url(images/tb-sprite.png) no-repeat; background-position: 5px -31px; }
+.tb-3 li, .tb-3 a, .tb-3 a:active, .tb-3 a:visited { background: url(images/tb-sprite.png) no-repeat; background-position: 5px -235px; }
+.tb-3 a:hover { background: url(images/tb-sprite.png) no-repeat; background-position: 5px -65px; }
+.tb-4 li, .tb-4 a, .tb-4 a:active, .tb-4 a:visited { background: url(images/tb-sprite.png) no-repeat; background-position: 5px -270px; }
+.tb-4 a:hover { background: url(images/tb-sprite.png) no-repeat; background-position: 5px -100px; }		
+.tb-5 li, .tb-5 a, .tb-5 a:active, .tb-5 a:visited { background: url(images/tb-sprite.png) no-repeat; background-position: 5px -304px; }
+.tb-5 a:hover { background: url(images/tb-sprite.png) no-repeat; background-position: 5px -135px; }				
+*/
+div.hdr-container { width: 100%; height: 45px; display: block; }
+div.hdr-child-container { display: block; width: 650px; }
+
+/* floated next to the print button */
+div.hdr-addr-cont { width: 435px; display: inline-block;  }
+div.hdr-addr { padding: 0 8px; }
+div.hdr-addr h2 { text-align: left; margin: 0; padding: 0; line-height: 40px; font-size: 14px; font-weight: 900; text-shadow: 1px 1px 1px #9e9e9e; color: #222; }
+
+/* floated next to the address */
+div.hdr-print-cont { width: 210px; display: inline-block; }
+div.hdr-print-child { width: 173px !important; height: 41px !important; line-height: 41px; background: url(images/print-btn.png) repeat-x; }
+div.hdr-print-element { height: 31px; display: block; text-align: center; }
+div.hdr-print-element a, div.hdr-print-element a:link, div.hdr-print-element a:visited, div.hdr-print-element a:active { text-decoration: none; text-shadow: 1px 1px 0px #154A6A; color: #E9F8FF; font-size: 18px; font-style: italic; background: url(images/print-sprite.png) no-repeat; background-position: 0 3px; display: block; height: 36px !important; line-height: 37px; padding: 0 0 0 35px; }
+div.hdr-print-element a:hover { background-position: 0 -29px; color: #e9f8ff; text-shadow: 1px 1px 0px #154a6a;}
+
+.hdr-radius { -webkit-border-top-left-radius: 10px; -webkit-border-top-right-radius: 10px; -moz-border-radius-topleft: 10px; -moz-border-radius-topright: 10px; border-top-left-radius: 10px; border-top-right-radius: 10px; }
+.footer-radius { -webkit-border-bottom-left-radius: 10px; -webkit-border-bottom-right-radius: 10px; -moz-border-radius-bottomleft: 10px; -moz-border-radius-bottomright: 10px; border-bottom-left-radius: 10px; border-bottom-right-radius: 10px; }
+
+div.hc-details-box { width: 100%; }
+div.content-parent-cont { display: block; width: 650px; }
+div.content-child-cont { width: 395px; height: 320px; display: inline-block; }
+div.content-child-element { background: url(images/image-frame.png) top no-repeat; height: 292px !important; width: 382px !important; }
+
+div.hc-nav-container { width: 210px; display: inline-block; float: right; margin-right: 17px;}
+div.hc-nav-parent-cont { width: 90%; display: block; box-shadow: 0 0 5px #9e9e9e; }
+
+div.hc-nav-hdr-cont { width: 100%; height: 32px !important; background: url(images/nav-head-bg.png) repeat-x; display: block; }
+div.hc-nav-hdr { margin:0px 15px 5px 10px; display: block; }
+div.hc-nav-hdr h2{ margin: 0; padding: 0; font-size: 18px; font-style: italic; display: block; color: #e9f8ff; text-shadow: 1px 1px 0px #154a6a; line-height: 28px; text-align: left; }
+
+div.hc-nav-content-cont { width: 100%; background: #dadada; height: 200px; }
+div.hc-nav-content { display: block; width: 100%;  }
+div.hc-nav-content ul, div.hc-nav-content ul li { margin: 0; padding: 0; list-style-type: none; }
+div.hc-nav-content ul { padding: 10px 0 0 0; }
+div.hc-nav-content li { background: url(images/nav-lb.png) bottom repeat-x; line-height: 22px; margin: 0 0 4px 0; }
+div.hc-nav-content ul li { padding-left: 12px; }
+div.hc-nav-footer-cont { width 100%; background: url(images/nav-foot-bg.png) repeat-x; display: block; }
+
+.HCFeaturesSubHeader {font-weight: 700; font-size: 16px; background: url(images/nav-foot-bg.png) repeat-x; line-height: 38px; padding: 0px 12px;}
+.HCFeatCaption {font-weight: 700;}
+.HCFeaturesTable {width: 100%;}
+
+.hc-no-photo {background: url(../../css/images/no-image.png) no-repeat; height: 292px; width: 382px; background-position: 120px 75px;}
+
+/*.HC_Prop_Photos {margin-top: -35px;}*/
+.hc-prop-photo { width: 350px; margin: 16px 0px 6px 16px;}

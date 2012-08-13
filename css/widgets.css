@@ -1,0 +1,301 @@
+/** Widget CSS **/
+
+/*************************************************
+* 
+*  App Badge Widget CSS
+* 
+*************************************************/
+
+
+
+.widget_app_badge_wrap {
+margin: 0;
+padding: 0;
+width: 314px;
+height: 241px;
+text-shadow: 1px 1px 0 #f1f1f1;
+background: url(../images/widgets/w-bg.png) no-repeat;
+}
+
+.widget_app_badge_wrap h3 {
+padding: 15px 24px 0 15px;
+margin: 0;
+line-height: 1;
+font-size: 30px;
+}
+
+.widget_app_badge_wrap h4 {
+margin: 0;
+padding: 0 0 0 20px;
+line-height: 2;
+font-size: 24px;
+color: #fff;
+text-shadow: 1px 1px 2px #333;
+}
+
+.widget_app_badge_wrap p {
+margin: 0;
+padding: 5px 24px 0 15px;
+line-height: 1;
+}
+
+.widget_app_badge_wrap span {
+margin: 0;
+padding: 0;
+line-height: 1;
+font-size: 14px;
+}
+.widget_app_badge_wrap a {
+margin: 10px;
+display: inline-block;
+height: 20px;
+}
+a#widget_iphone {
+background: url(../images/widgets/icons.png) no-repeat;
+background-position: 0px -21px;
+padding: 0 0 0 18px;
+}
+a#widget_iphone:hover  {
+background: url(../images/widgets/icons.png) no-repeat;
+background-position: -1px -1px;
+}
+a#widget_android {
+background: url(../images/widgets/icons.png) no-repeat;
+background-position: 0px -61px;
+padding: 0 0 0 18px;
+}			
+a#widget_android:hover {
+background: url(../images/widgets/icons.png) no-repeat;
+background-position: -1px -41px;
+}
+
+#widget_app_badge_vip {
+margin: 0;
+padding: 26px 0 0 15px;
+font-size: 16px;
+}
+
+/* Widget Wrappers */
+.widget_wrap{margin:5px 0;padding:0;}
+.widget_aside{padding:10px 0 0;vertical-align:top;}
+.widget_login{margin:5px 0 0 10px; }
+.widget_text{margin:0!important;padding:0!important;}
+.widget_area li{display:inline-block;}
+.full_wrap li{display:block; margin: 0 auto; }
+.widget_feat_slide {
+min-height: 330px;
+width: 280px;
+display: block;
+margin: 0 auto;
+text-align: left;
+}
+
+/* Widget Titles */
+.widget_text_title{font-weight:700; white-space: pre;overflow: hidden;}
+.widget_social_title{margin:13px 0 0;}
+.full_wrap p { margin: 0; padding: 0; }
+.feat_slide img { max-width: 250px; border: 3px solid #f3f3f3; box-shadow: 0 0 5px #c0c0c0;}
+.hc-widget-feat-img {max-width: 260px;}
+
+/* Widget Headings */
+.widget_tile_span{background:#c0c0c0;border-radius:3.5px;display:block;padding:5px;margin:0 0 12px;}
+.widget_wrap h3, .widget_tile_span h3{margin:5px;padding:0;}
+.widget_hc_feat_list { display: block; clear: both;}
+
+
+/* Widget Images */
+.widget_area li img{border:5px solid #f7f7f7;box-shadow:0 0 5px #999;margin:10px 5px 0;}
+.widget_imgs{display:inline;}
+span.widget_imgs a{display:inline-block;height:24px;margin:0 5px;width:24px;}
+#fb_icon{background:url(../images/facebook.png) no-repeat;}
+#tw_icon{background:url(../images/twitter.png) no-repeat;}
+#ln_icon{background:url(../images/linkedin.png) no-repeat;}
+
+/* Widget Form */
+
+.widget_input{background:#fff;border:1px solid #545454;border-radius:3.5px;height:24px;line-height:24px;padding:0 5px;}
+.widget_area,.widget_login li,.width_login input{width:100%;}
+
+/* Widget Buttons */
+
+.widget-btn {
+line-height: 24px;
+height: 24px;
+border: 1px solid #c1c1c1; 
+padding: 5px 25px 30px; 
+margin: 15px 0 0 5px;
+box-shadow: 0 0 3px #c9c9c9;
+border-radius: 3.5px;
+background: rgb(255,255,255); /* Old browsers */
+background: -moz-linear-gradient(top,  rgba(255,255,255,1) 0%, rgba(229,229,229,1) 100%); /* FF3.6+ */
+background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(255,255,255,1)), color-stop(100%,rgba(229,229,229,1))); /* Chrome,Safari4+ */
+background: -webkit-linear-gradient(top,  rgba(255,255,255,1) 0%,rgba(229,229,229,1) 100%); /* Chrome10+,Safari5.1+ */
+background: -o-linear-gradient(top,  rgba(255,255,255,1) 0%,rgba(229,229,229,1) 100%); /* Opera 11.10+ */
+background: -ms-linear-gradient(top,  rgba(255,255,255,1) 0%,rgba(229,229,229,1) 100%); /* IE10+ */
+background: linear-gradient(top,  rgba(255,255,255,1) 0%,rgba(229,229,229,1) 100%); /* W3C */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#e5e5e5',GradientType=0 ); /* IE6-9 */
+}
+
+.widget-btn:hover {
+border: 1px solid #797979;
+color: #454545;
+text-shadow: 1px 1px 0 #c0c0c0;
+background: -moz-linear-gradient(top,  rgba(0,0,0,0) 0%, rgba(165,165,165,0.65) 100%); /* FF3.6+ */
+background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(0,0,0,0)), color-stop(100%,rgba(165,165,165,0.65))); /* Chrome,Safari4+ */
+background: -webkit-linear-gradient(top,  rgba(0,0,0,0) 0%,rgba(165,165,165,0.65) 100%); /* Chrome10+,Safari5.1+ */
+background: -o-linear-gradient(top,  rgba(0,0,0,0) 0%,rgba(165,165,165,0.65) 100%); /* Opera 11.10+ */
+background: -ms-linear-gradient(top,  rgba(0,0,0,0) 0%,rgba(165,165,165,0.65) 100%); /* IE10+ */
+background: linear-gradient(top,  rgba(0,0,0,0) 0%,rgba(165,165,165,0.65) 100%); /* W3C */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', endColorstr='#a6a5a5a5',GradientType=0 ); /* IE6-9 */
+}
+
+.widget-btn:active {
+position: relative;
+top: 1px;
+box-shadow: 0 0 15px #fff, inset 0 0 15px #c0c0c0;
+text-shadow: 1px 1px 0 #c0c0c0;
+color: #878787;
+}
+
+/* UNSorted Widget Area Stuff */
+.widget-float {
+float: right;
+margin: 0 20px 0 0;
+cursor:
+}
+.widget-login-helper {
+line-height: 40px;
+}
+/* DEPRECATED */
+div#w-mort-wrap {
+padding: 5px 5px 5px; 
+margin: 5px 0;
+}
+
+#w-mort-wrap div { line-height: 1; }
+#w-mort-wrap p { margin: 0; }
+#w-mort-wrap label { width: 200px;}
+.w-mort-input { height: 24px; line-height: 24px; border-radius: 3.5px; border: 1px solid #545454; background: #fff; padding: 0 5px; width: 105px; }
+
+input#w-mort-child-left  {width: 60%;}
+
+.w-mort-widget { line-height: 1.5; margin: 0 0 0 3px; width: 175px; display: inline-block; }
+.w-mort-output { width: 175px; }
+.w-mort-span { padding: 5px; display: block; border-radius: 3.5px; background: #c0c0c0; }
+.w-mort-span h3 {  padding: 0; margin: 5px; }
+
+#w-mort-child-right {
+margin: 20px 5px 0;
+background: #f7f7f7;
+border-radius: 3.5px; 
+padding: 5px;
+}
+
+.w-mort-btn {
+line-height: 24px;
+height: 24px;
+border: 1px solid #c1c1c1; 
+padding: 5px 25px 30px; 
+margin: 15px 0 0 5px;
+box-shadow: 0 0 3px #c9c9c9;
+border-radius: 3.5px;
+background: rgb(255,255,255); /* Old browsers */
+background: -moz-linear-gradient(top,  rgba(255,255,255,1) 0%, rgba(229,229,229,1) 100%); /* FF3.6+ */
+background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(255,255,255,1)), color-stop(100%,rgba(229,229,229,1))); /* Chrome,Safari4+ */
+background: -webkit-linear-gradient(top,  rgba(255,255,255,1) 0%,rgba(229,229,229,1) 100%); /* Chrome10+,Safari5.1+ */
+background: -o-linear-gradient(top,  rgba(255,255,255,1) 0%,rgba(229,229,229,1) 100%); /* Opera 11.10+ */
+background: -ms-linear-gradient(top,  rgba(255,255,255,1) 0%,rgba(229,229,229,1) 100%); /* IE10+ */
+background: linear-gradient(top,  rgba(255,255,255,1) 0%,rgba(229,229,229,1) 100%); /* W3C */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#e5e5e5',GradientType=0 ); /* IE6-9 */
+}
+
+.w-mort-btn:hover {
+border: 1px solid #797979;
+color: #454545;
+text-shadow: 1px 1px 0 #c0c0c0;
+background: -moz-linear-gradient(top,  rgba(0,0,0,0) 0%, rgba(165,165,165,0.65) 100%); /* FF3.6+ */
+background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(0,0,0,0)), color-stop(100%,rgba(165,165,165,0.65))); /* Chrome,Safari4+ */
+background: -webkit-linear-gradient(top,  rgba(0,0,0,0) 0%,rgba(165,165,165,0.65) 100%); /* Chrome10+,Safari5.1+ */
+background: -o-linear-gradient(top,  rgba(0,0,0,0) 0%,rgba(165,165,165,0.65) 100%); /* Opera 11.10+ */
+background: -ms-linear-gradient(top,  rgba(0,0,0,0) 0%,rgba(165,165,165,0.65) 100%); /* IE10+ */
+background: linear-gradient(top,  rgba(0,0,0,0) 0%,rgba(165,165,165,0.65) 100%); /* W3C */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', endColorstr='#a6a5a5a5',GradientType=0 ); /* IE6-9 */
+}
+
+.w-mort-btn:active {
+position: relative;
+top: 1px;
+box-shadow: 0 0 15px #fff, inset 0 0 15px #c0c0c0;
+text-shadow: 1px 1px 0 #c0c0c0;
+color: #878787;
+}
+
+/* HC STYLES - LEAD SIGNUP AND SHORTCODE UI CSS */
+.shortcode-result, .hc_signup_form {
+box-shadow: 0 0 3px #777, inset 0 1px 0 #fff;
+padding: 20px;
+/*float: left;*/
+line-height: 20px;
+background: #f1f1f1;
+border-radius: 10px;
+margin: 0 10px 0 0;
+}
+
+.hc_signup_form li {
+clear: both;
+}
+.hc_signup_fields label {
+width: 85px;
+display: inline-block;
+font-size: 14px;
+font-weight: 400;
+}
+
+.hc_input { 
+line-height: 20px;
+padding: 4px 9px;
+width: 65%;
+margin: 0 0 4px;
+text-align: left;
+display: inline-block;
+border: 1px solid #C0C0C0;
+border-radius: 4.5px;
+font: normal 14px 'Lucida Sans Unicode','Lucida Sans', 'Lucida Sans Console', Tahoma, Verdana;
+}
+
+input.hc_input:hover {
+border: 1px solid #C0C0C0;
+}
+input.hc_button {
+width: 112px;
+height: 43px;
+line-height: 40px;
+text-align: center;
+/*float: right;*/
+margin: 0 20px 0 0;
+background-color: transparent;
+background-image: url(../images/side-login-btn.png);
+background-position: top center;
+background-repeat: no-repeat;
+color: #fff;
+text-shadow: 0 0 2px #76813d, 1px 1px 0 #76813d;
+font: normal 14px 'Lucida Sans Unicode','Lucida Sans', 'Lucida Sans Console', Tahoma, Verdana;
+border: 0;
+cursor: pointer;
+}
+
+.hc_button:hover {
+background-image: url(../images/side-login-btn.png);
+background-position: center center;
+background-repeat: no-repeat;
+}
+
+.hc_button:active {
+background-image: url(../images/side-login-btn.png);
+background-position: bottom center;
+background-repeat: no-repeat;
+text-shadow: 1px 1px 0 #e3ecb5;
+}
+
+.hc-right {float: right; }
+.hc-left  {float: left ; }

@@ -1,0 +1,34 @@
+.tweet,
+.query {
+}
+
+	.tweet_list {
+		color: #757575;
+		list-style: none;
+		margin: 0;
+		padding: 0;
+	}
+	span.tweet_text {
+		normal 11px Arial, Helvetica, sans-serif;
+
+	}
+		.tweet_list .awesome,
+		.tweet_list .epic {
+			text-transform: uppercase;
+		}
+		
+		.tweet_list li {
+			padding: 8px 0;
+			list-style-type: none;
+		}
+		
+		.tweet_list .tweet_even {
+		}
+		
+		.tweet_list .tweet_avatar {
+			padding-right: .5em; float: left;
+		}
+		
+			.tweet_list .tweet_avatar img {
+				vertical-align: middle;
+			}
