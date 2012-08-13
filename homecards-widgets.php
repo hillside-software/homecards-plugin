@@ -275,7 +275,7 @@ class HC_Feat_List_Widget extends WP_Widget {
 	
 	function getPropPhoto($listing, $picIndex, $size, $board) {
 	// Note: picIndex MUST be between 1-99
-		return "http://www.myhomecards.com/GetPhoto.aspx?LN=" . $listing . "&Size=" . ($size ? $size : "ExtraLarge") . "&PhotoIndex=" . $picIndex . "&Board=" . $board;
+		return "http://www.myhomecards.com/GetPhoto.aspx?LN=" . $listing . "&Size=" . ($size ? $size : "Medium") . "&PhotoIndex=" . $picIndex . "&Board=" . $board;
 	}
 
 	function getImgSizeOpts() {

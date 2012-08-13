@@ -310,11 +310,12 @@ function hc_get_html_tile() {
 function hc_addActionForScripts() {
 		//Tipsy Tool-Tip Library
 		wp_enqueue_script( 'tipsy', plugin_dir_url( __FILE__ ) . 'js/jquery.tipsy.min.js', array( 'jquery' ) );
-		wp_enqueue_style( 'tipsy', plugin_dir_url( __FILE__ ) . 'css/tipsy.css' );
+		//wp_enqueue_style( 'tipsy', plugin_dir_url( __FILE__ ) . 'css/tipsy.css' );
 		//Happy.js Library
 		wp_enqueue_script( 'happy', plugin_dir_url( __FILE__ ) . 'js/happy.js', array( 'jquery' ) );
 		wp_enqueue_script( 'happy-methods', plugin_dir_url( __FILE__ ) . 'js/happy.methods.js', array( 'jquery' ) );
-		wp_enqueue_style( 'happy', plugin_dir_url( __FILE__ ) . 'css/happy.css' );
+		//wp_enqueue_style( 'happy', plugin_dir_url( __FILE__ ) . 'css/happy.css' );
+		wp_enqueue_style('components', plugin_dir_url( __FILE__ ) . 'css/components.css');
 }
 add_action ( 'admin_head', 'hc_addActionForScripts');
 
@@ -776,12 +777,11 @@ function hc_addscripts() {
 	*/
 	//ENQUEUE SCRIPT
 	//wp_enqueue_script( 'hc-autocomplete', plugin_dir_url( __FILE__ ) . 'js/jquery.tokeninput.js', array( 'jquery', 'jquery-ui' ) );	
-	wp_enqueue_style( 'hc-search', plugin_dir_url( __FILE__ ) . 'css/search.css' );
+	wp_enqueue_style( 'components', plugin_dir_url( __FILE__ ) . 'css/components.css' );
 	wp_enqueue_style( 'hc-websymbols', 'http://www.myhomecards.com/Common/websymbols.css' );
 	if ( ! is_admin() ) { wp_enqueue_style( 'hc-iconic-fill', 'http://www.myhomecards.com/Common/iconic_fill.css' ); }
-
 	//wp_enqueue_style( 'hc-autocomplete-fb', plugin_dir_url( __FILE__ ) . 'css/token-input-facebook.css' );
-	wp_enqueue_style( 'hc-widget-mort-calc', plugin_dir_url( __FILE__ ) . 'css/widgets.css' );	
+	//wp_enqueue_style( 'hc-widget-mort-calc', plugin_dir_url( __FILE__ ) . 'css/widgets.css' );	
 
 	//echo '<script type="text/javascript" href="' . plugin_dir_url( __FILE__ ) . 'js/token-input-facebook.css"></script>';
 }
@@ -847,43 +847,6 @@ function hc_widget_css() { ?>
 	})
 	});
 	</script>
-	<style type="text/css">
-	.hc-widget-box {
-		background: #7abcff; /* Old browsers */
-		background: -moz-linear-gradient(top,  #7abcff 0%, #60abf8 44%, #4096ee 100%); /* FF3.6+ */
-		background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#7abcff), color-stop(44%,#60abf8), color-stop(100%,#4096ee)); /* Chrome,Safari4+ */
-		background: -webkit-linear-gradient(top,  #7abcff 0%,#60abf8 44%,#4096ee 100%); /* Chrome10+,Safari5.1+ */
-		background: -o-linear-gradient(top,  #7abcff 0%,#60abf8 44%,#4096ee 100%); /* Opera 11.10+ */
-		background: -ms-linear-gradient(top,  #7abcff 0%,#60abf8 44%,#4096ee 100%); /* IE10+ */
-		background: linear-gradient(top,  #7abcff 0%,#60abf8 44%,#4096ee 100%); /* W3C */
-		filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#7abcff', endColorstr='#4096ee',GradientType=0 ); /* IE6-9 */
-		}
-	
-	.hc-widget-box-top {
-		  -webkit-box-shadow: inset 0 1px 0 #b1d7f1 !important; /* Saf3-4, iOS 4.0.2 - 4.2, Android 2.3+ */
-	     -moz-box-shadow: inset 0 1px 0 #b1d7f1 !important; /* FF3.5 - 3.6 */
-	    box-shadow: inset 0 1px 0 #b1d7f1 !important;
-	}
-	#primary-widget-area .hc-widget-box {
-		background: #7abcff; /* Old browsers */
-		background: -moz-linear-gradient(top,  #7abcff 0%, #60abf8 44%, #4096ee 100%); /* FF3.6+ */
-		background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#7abcff), color-stop(44%,#60abf8), color-stop(100%,#4096ee)); /* Chrome,Safari4+ */
-		background: -webkit-linear-gradient(top,  #7abcff 0%,#60abf8 44%,#4096ee 100%); /* Chrome10+,Safari5.1+ */
-		background: -o-linear-gradient(top,  #7abcff 0%,#60abf8 44%,#4096ee 100%); /* Opera 11.10+ */
-		background: -ms-linear-gradient(top,  #7abcff 0%,#60abf8 44%,#4096ee 100%); /* IE10+ */
-		background: linear-gradient(top,  #7abcff 0%,#60abf8 44%,#4096ee 100%); /* W3C */
-		filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#7abcff', endColorstr='#4096ee',GradientType=0 ); /* IE6-9 */
-		}
-	
-	#primary-widget-area .widget .widget-top, .postbox h3, .stuffbox h3 {
-	margin-top: 0px;
-	border-bottom-width: 0px;
-	border-bottom-style: none;
-	-moz-box-shadow: 0 !important;
-	-webkit-box-shadow: 0 !important;
-	box-shadow: 0 !important;
-	}
-	</style>
 <?php
 }
 
