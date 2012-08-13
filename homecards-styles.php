@@ -1,5 +1,7 @@
 <?php
 
+//failing to see purpose of this file??? -DH
+
 function hc_getStyle_cityProfilePage() {
 	wp_register_style("hc-city-page-style1", plugin_dir_url( __FILE__ ) . "css/city-page-style1.css");
 	wp_enqueue_style( "hc-city-page-style1", plugin_dir_url( __FILE__ ) . "css/city-page-style1.css");
