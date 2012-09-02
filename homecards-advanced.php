@@ -151,9 +151,9 @@ add_action('wp_enqueue_scripts', 'add_gallery_scripts_styles_wp_head');
 
 function add_gallery_scripts_styles_wp_head() {
 		wp_enqueue_script('jquery');
-		wp_enqueue_script('yetii-min', get_template_directory_uri() . '/library/js/' . 'yetii-min.js', array('jquery'));
-		wp_enqueue_script('pikachoose', get_template_directory_uri() . '/library/js/' . 'jquery.pikachoose.full.js', array('jquery'));
-		wp_enqueue_style('components', get_template_directory_uri() . '/library/css/'. 'components.css', false, false, 'screen');
+		wp_enqueue_script('yetii-min', plugin_dir_url( __FILE__ ) . 'js/' . 'yetii-min.js', array('jquery'));
+		wp_enqueue_script('pikachoose', plugin_dir_url( __FILE__ ) . 'js/' . 'jquery.pikachoose.full.js', array('jquery'));
+		wp_enqueue_style('components', plugin_dir_url( __FILE__ ) . 'css/'. 'components.css', false, false, 'screen');
 	}
 ?>
 

@@ -827,4 +827,124 @@ a.morePhotos:hover { background: url(images/more-photos-button.png) top no-repea
 #content tr td { padding: 0!important;}
 .hc_ln {color: white!important; text-shadow: 1px 1px 1px #888;}
 
+.pikachoose {width: 300px; margin: 0 auto;}
+
+/* Style the thumbnails */
+.pika-thumbs{ padding: 0 16px; height: 75px;width: 320px; float: right; }
+	.pika-thumbs li{ width: 60px; height:60px; margin: 10px 0 0 17px; padding: 0; overflow: hidden;
+		float: left; list-style-type: none;padding: 3px; margin: 0 5px; background: #fafafa; border: 1px solid #e5e5e5; cursor: pointer;}
+	.pika-thumbs li:last {margin: 0;}
+	.pika-thumbs li .clip {position:relative;height:100%;text-align: center; vertical-align: center; overflow: hidden;}
+	
+/* The stage is the wrapper. The image fills 100% the height of the stage */
+.pika-stage, .pika-textnav {width: 320px;}
+.pika-stage {position: relative; background: #eee; border: 1px solid #ccc; padding: 10px 10px 40px 10px; text-align:center; float: left; }
+.pika-stage img{width: 100%;}
+.pika-stage .caption {position: absolute; background: #000; background: rgba(0,0,0,0.75);  border: 1px solid #141414; font-size: 11px; 
+			color: #fafafa; padding: 10px; text-align: right; bottom: 50px; right: 10px;}
+	.pika-stage .caption p {padding: 0; margin: 0; line-height: 14px;}
+
+
+/* Ths play, pause, prev and next buttons */
+.pika-imgnav a {position: absolute; text-indent: -5000px; display: block;z-index:3;}
+	.pika-imgnav a.previous {background: url(components/prev.png) no-repeat left 45%; height: 100%; width: 50px; top: 10px; left: 10px;cursor:pointer;}
+	.pika-imgnav a.next {background: url(components/next.png) no-repeat right 45%; height: 100%; width: 50px; top: 10px; right: 10px;cursor:pointer;}
+	.pika-imgnav a.play {background: url(components/play.png) no-repeat 0% 50%; height: 100px; width: 44px;top:0;left:50%;display: none;cursor:pointer;}
+	.pika-imgnav a.pause {background: url(components/pause.png) no-repeat 0% 50%; height: 100px; width: 44px;top:0;left:50%;display:none;cursor:pointer;}
+
+/* The previous and next textual buttons */
+.pika-textnav {overflow: hidden; margin: 10px 0 0 0;bottom:10px; position:absolute;}
+.pika-textnav a {font-size: 12px; text-decoration: none; color: #333; padding: 4px;}
+	.pika-textnav a.previous {float: left; width: auto; display: block;}
+	.pika-textnav a.next {float: right; width: auto; display: block;}
+
+/*for the tool tips*/
+.pika-tooltip{font-size:12px;position:absolute;color:white;padding:3px; background-color: rgba(0,0,0,0.7);border:3px solid black;}
+.pika-counter{position: absolute;bottom: 45px;left:15px;color:white;background:rgba(0,0,0,0.7);font-size:11px;padding:3px;-moz-border-radius: 5px;border-radius:5px;}
+
+/* If using user thumbnails there's a pause well the new large image loads. This is the loader for that */		
+.pika-loader{ background:url(components/loading.gif) 3px 3px no-repeat #000; background-color:rgba(0,0,0,0.9); color:white; width:60px; font-size:11px; padding:5px 3px; 
+	text-align:right; position:absolute; top:15px; right:15px; }
+	
+ #pikame li:not(:eq(0)) {display: none;} /* CSS3 only, fix it if you want ;) */
+
+/*
+.ui-tabs-hide {
+	display: none;
+}
+
+.ui-tabs-nav {
+	list-style: none;
+}
+
+.ui-tabs-nav li {
+	float: left; margin: 0 0.75em 0 0;
+}
+
+.ui-tabs-nav li a {
+	background-color: none;
+	background: none;
+}
+
+.ui-state-default {
+	background: none;
+}
+
+.ui-state-default a {
+	margin: 0 auto;
+	display: block;
+	line-height: 45px;
+	padding: 0 0.9em;
+}*/
+
+/* demo */
+
+div#tab-container-1 {
+	width: 100%;
+	margin: 0 0 20px 0;
+}
+
+ul#tab-container-1-nav {
+	list-style-type: none;
+	width: 100%;
+	float: left;
+	background: url(components/pixel.gif) bottom left repeat-x;
+}
+
+ul#tab-container-1-nav li {
+	margin: 0 2px 0 0;
+	float: left;
+	background: #eee;
+}
+
+ul#tab-container-1-nav a {
+	float: left;
+	display: block;
+	padding: 4px 25px;
+	border: 1px solid #ccc;
+	border-bottom: 0;
+	color: #666;
+	background: #eee;
+	text-decoration: none;
+	font-weight: bold;
+}
+
+ul#tab-container-1-nav a:hover {
+	background: #fff;
+}
+
+ul#tab-container-1-nav a.active {
+	padding-bottom: 5px;
+	cursor: default;
+	color: #336699;
+}
+
+.tabs-container {
+	clear: left;
+	border: 1px solid #ccc;
+	border-top: 0;
+	padding: 20px 8px 0 8px;
+}
+
+
 /** WTF: .pd_wrapper { display: none;} **/
