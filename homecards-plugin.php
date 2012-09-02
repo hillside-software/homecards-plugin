@@ -18,7 +18,8 @@ error_reporting(E_ALL);
 //error_reporting(E_COMPILE_ERROR|E_RECOVERABLE_ERROR|E_ERROR|E_CORE_ERROR);
 */
 
-
+//ini_set('display_errors',1);
+//error_reporting(E_ALL);
 
 /**
 *** IMPORTANT SETTING ***
@@ -78,8 +79,20 @@ class HomeCardsPlugin {
 		if (get_option('hc_searchresultslimit', 'NULL') == 'NULL') { add_option('hc_searchresultslimit', '25'); }
 		if (get_option('hc_disablecss', 'NULL') == 'NULL') { add_option('hc_disablecss', '0'); }
 		if (get_option('wp_hc_details_url_prefix', 'NULL') == 'NULL') { add_option('wp_hc_details_url_prefix', "property-details"); }
-		
+
+		HomeCardsPlugin::SetUserRoles();
 	}
+	
+	private static function SetUserRoles() {
+		$role = add_role('hc_lead', 'HomeCards User', array(
+		    'read' => true, // True allows that capability
+		    'edit_posts' => false,
+		    'delete_posts' => false, // Use false to explicitly deny
+		));	
+		
+		return $role;
+	}
+
 	public function uninstall_plugin() {
 		/* Delete obsolete options and files */
 		$opts = split(',', 'wp_hc_search_form1,wp_hc_webid,wp_hc_token,wp_hc_siteurl,hc_searchresultslimit,hc_disablecss,wp_hc_details_url_prefix');
@@ -818,7 +831,7 @@ function addToHitCounter($suffix = '') {
 	$hitData[0] = intval($hitData[0]) + 1;
 	/* update the $hitData array and update the session token */
 	$_SESSION['hitCount_' . $suffix] = implode('|', $hitData);
-	if (!is_admin() && $_SESSION['hitCount_' . $suffix] > 225) {
+	if (!is_admin() && $_SESSION['hitCount_' . $suffix] > 800) {
 		return -1;
 	}
 	return $_SESSION['hitCount_' . $suffix];

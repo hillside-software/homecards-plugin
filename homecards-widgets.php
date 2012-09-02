@@ -536,7 +536,7 @@ class HC_Mortgage_Calc_Widget extends WP_Widget {
 		
 		//function widgetMortCalc() {
 			wp_enqueue_script( 'hc-widget-mort-calc', plugin_dir_url( __FILE__ ) . 'js/mort-calc.js', array( 'jquery' ) );
-			wp_enqueue_style( 'hc-widget-mort-calc', plugin_dir_url( __FILE__ ) . 'css/widgets.css' );	
+			//wp_enqueue_style( 'hc-widget-mort-calc', plugin_dir_url( __FILE__ ) . 'css/widgets.css' );	
 		//}
 		?>
 				
@@ -604,7 +604,7 @@ class HC_Tweet_Widget extends WP_Widget {
 		
 		//enqueue widget scripts & styles 
 			wp_enqueue_script( 'hc-widget-tweet', plugin_dir_url( __FILE__ ) . 'js/jquery.tweet.min.js', array( 'jquery' ) );
-			wp_enqueue_style( 'hc-widget-tweet', plugin_dir_url( __FILE__ ) . 'css/tweet.css' );	
+			//wp_enqueue_style( 'hc-widget-tweet', plugin_dir_url( __FILE__ ) . 'css/tweet.css' );	
 		?>
 		<script type="text/javascript">
 

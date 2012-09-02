@@ -62,7 +62,7 @@ function homecards_shortcode( $atts ) {
 			'limit' => get_option('hc_searchresultslimit', '20'),
 			'listingids' => '', // Search Feature - Overrides Regular 'Query' Parameters (from the POST or $atts['query'] value )
 			'showmap' => 'true',
-			'mapwidth' => '545px',
+			'mapwidth' => '100%',
 			'mapheight' => '350px'
 		), $atts );
 	}

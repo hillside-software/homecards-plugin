@@ -136,3 +136,94 @@ function hc_checkCustomAuthentication($username) {
 }
 
 */
+
+//Show custom UI on Users panel with Adv. Options
+//add_action( 'show_user_profile', 'hc_lead_profile_view' );
+//add_action( 'edit_user_profile', 'hc_lead_profile_view' );
+//add_action( 'personal_options_update', 'hc_lead_profile_save' );
+//add_action( 'edit_user_profile_update', 'hc_lead_profile_save' );
+
+function hc_lead_profile_view( $user ) {
+?>
+  <h3><?php _e("Contact and Location Information", "blank"); ?></h3>
+  <table class="form-table">
+    <tr>
+      <th><label for="hc_lead_phone"><?php _e("Phone"); ?></label></th>
+      <td>
+        <input type="text" name="hc_lead_phone" id="hc_lead_phone" class="regular-text" 
+            value="<?php echo esc_attr( get_the_author_meta( 'hc_lead_phone', $user->ID ) ); ?>" /><br />
+        <span class="description"><?php _e("Please enter your phone."); ?></span>
+ 		   </td>
+    </tr>
+
+    <tr>
+      <th><label for="hc_lead_streetAddr"><?php _e("Street Address"); ?></label></th>
+      <td>
+        <input type="text" name="hc_lead_streetAddr" id="hc_lead_streetAddr" class="regular-text" 
+            value="<?php echo esc_attr( get_the_author_meta( 'hc_lead_streetAddr', $user->ID ) ); ?>" /><br />
+        <span class="description"><?php _e("Please enter your Street Address."); ?></span>
+ 		   </td>
+    </tr>
+
+    <tr>
+      <th><label for="hc_lead_streetAddr2"><?php _e("Street Address Line 2"); ?></label></th>
+      <td>
+        <input type="text" name="hc_lead_streetAddr2" id="hc_lead_streetAddr2" class="regular-text" 
+            value="<?php echo esc_attr( get_the_author_meta( 'hc_lead_streetAddr2', $user->ID ) ); ?>" /><br />
+        <span class="description"><?php _e("If you have a second Address Line enter it here."); ?></span>
+ 		   </td>
+    </tr>
+
+    <tr>
+      <th><label for="hc_lead_city"><?php _e("City"); ?></label></th>
+      <td>
+        <input type="text" name="hc_lead_city" id="hc_lead_city" class="regular-text" 
+            value="<?php echo esc_attr( get_the_author_meta( 'hc_lead_city', $user->ID ) ); ?>" /><br />
+        <span class="description"><?php _e("Please enter your city."); ?></span>
+ 		   </td>
+    </tr>
+
+    <tr>
+      <th><label for="hc_lead_state"><?php _e("State"); ?></label></th>
+      <td>
+        <input type="text" name="hc_lead_state" id="hc_lead_state" class="regular-text" 
+            value="<?php echo esc_attr( get_the_author_meta( 'hc_lead_state', $user->ID ) ); ?>" /><br />
+        <span class="description"><?php _e("Please enter your state."); ?></span>
+ 		   </td>
+    </tr>
+
+    <tr>
+      <th><label for="hc_lead_zip"><?php _e("Zip"); ?></label></th>
+      <td>
+        <input type="text" name="hc_lead_zip" id="hc_lead_zip" class="regular-text" 
+            value="<?php echo esc_attr( get_the_author_meta( 'hc_lead_zip', $user->ID ) ); ?>" /><br />
+        <span class="description"><?php _e("Please enter your zip."); ?></span>
+ 		   </td>
+    </tr>
+
+    <tr>
+      <th><label for="hc_lead_country"><?php _e("Country"); ?></label></th>
+      <td>
+        <input type="text" name="hc_lead_country" id="hc_lead_country" class="regular-text" 
+            value="<?php echo esc_attr( get_the_author_meta( 'hc_lead_country', $user->ID ) ); ?>" /><br />
+        <span class="description"><?php _e("Please enter your country."); ?></span>
+ 		   </td>
+    </tr>
+  </table>
+<?php
+}
+
+function hc_lead_profile_save( $user_id ) {
+  $saved = false;
+  if ( current_user_can( 'edit_user', $user_id ) ) {
+    update_user_meta( $user_id, 'hc_lead_phone', $_POST['hc_lead_phone'] );
+    update_user_meta( $user_id, 'hc_lead_streetAddr', $_POST['hc_lead_streetAddr'] );
+    update_user_meta( $user_id, 'hc_lead_streetAddr2', $_POST['hc_lead_streetAddr2'] );
+    update_user_meta( $user_id, 'hc_lead_city', $_POST['hc_lead_city'] );
+    update_user_meta( $user_id, 'hc_lead_state', $_POST['hc_lead_state'] );
+    update_user_meta( $user_id, 'hc_lead_zip', $_POST['hc_lead_zip'] );
+    update_user_meta( $user_id, 'hc_lead_country', $_POST['hc_lead_country'] );
+  $saved = true;
+  }
+  return true;
+}
