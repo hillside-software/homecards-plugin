@@ -62,8 +62,10 @@ function homecards_shortcode( $atts ) {
 			'limit' => get_option('hc_searchresultslimit', '20'),
 			'listingids' => '', // Search Feature - Overrides Regular 'Query' Parameters (from the POST or $atts['query'] value )
 			'showmap' => 'true',
-			'mapwidth' => '100%',
-			'mapheight' => '350px'
+			'mapwidth' => 'auto',
+			'mapheight' => '350px',
+			'mapresizerwidth' => '750px',
+			'mapresizerheight' => '450px'
 		), $atts );
 	}
 
@@ -253,12 +255,12 @@ function homecards_shortcode( $atts ) {
 			}
 
 			if ( $atts['showmap'] == 'true' ) {
-				$html .= "		<div class=\"hc-map-resizer\" style=\"margin: 0px; padding: 0px;\">\n";
+				$html .= "		<div class=\"hc-map-resizer\" style=\"margin: 0; padding: 0px;\">\n";
 				$html .= '			<div class="hc-map-box" style="width: ' . $atts['mapwidth'] . '; height:'. $atts['mapheight'] .'; margin: 6px;">Loading Map... Please wait...</div>' . "\n";
-				$html .= '			<div class="hc-map-status" style="width: ' . $atts['mapwidth'] . '; height: 20px; margin: 6px;">Loading Map... Please wait...</div>' . "\n";
+				$html .= '			<div class="hc-map-status" style="width: ' . $atts['mapresizerwidth'] . '; height: 20px; margin: 6px;">Loading Map... Please wait...</div>' . "\n";
 				$html .= "		</div>\n";
 			}
-			$html .= "		<div class='hc-results-paging'>\n\n</div>\n";
+			$html .= "		<div class='hc-results-paging'>\n\n</div>\n"; //TODO: Add paging numbers
       
 		}
 
@@ -295,12 +297,14 @@ function homecards_shortcode( $atts ) {
 
 		/* Here is where we actually get the pre-compiled HTML results from the server. */
 		/* TODO: $html is being returned incorrectly, causing page to all load within this <div> element. */
+		
 		global $wp_filter ;
 		if(isset($wp_filter['hc_search_results'])) { 
 			// this is where custom rendered search code is injected
 			$json = $hc_proxy->doSearch($atts['limit'], $myArray, '', 'JSON') ;
 			$html .= apply_filters('hc_search_results',$json);
-		} else { 
+		} else {
+			 
 			// this is the default search pre-formatted HTML
 			$searchResultsHtml = $hc_proxy->doSearch($atts['limit'], $myArray) . "<!-- ** END OF SEARCH RESPONSE ** -->\n";
 			if ( !IS_AJAX ) { $html .= "	<div class='hc-results-list'>\n"; }
@@ -313,7 +317,7 @@ function homecards_shortcode( $atts ) {
 		
 		if ( !IS_AJAX ) { 
 			$html .= "  </div>\n";
-			// Output Paging Buttons HTML - For Bottom of results
+			// TODO: Numberic - Output Paging Buttons HTML - For Bottom of results
 			$html .= "	<div class='hc-results-paging'>\n";
 			$html .= "		\n";
 			$html .= "	</div>\n";
@@ -360,8 +364,8 @@ function homecards_shortcode( $atts ) {
 		if ( isset($atts['col1']) ) { $html .= "			<input type='hidden' name='col1' value='" . $atts['col1'] . "' />\n			<input type='hidden' name='col2' value='" . $atts['col2'] . "' />\n			<input type='hidden' name='col3' value='" . $atts['col3'] . "' />\n"; }
 		if ( $atts['showmap'] == 'true' ) {
 			$html .= "		<div class=\"hc-map-resizer\" style=\"margin: 0px; padding: 0px;\">\n";
-			$html .= '			<div class="hc-map-box" style="width: ' . $atts['mapwidth'] . '; height:'. $atts['mapheight'] .'; margin: 6px;">Loading Map... Please wait...</div>' . "\n";
-			$html .= '			<div class="hc-map-status" style="width: ' . $atts['mapwidth'] . '; height: 34px; margin: 6px;">Loading Map... Please wait...</div>' . "\n";
+				$html .= '			<div class="hc-map-box" style="width: ' . $atts['mapwidth'] . '; height:'. $atts['mapheight'] .'; margin: 6px;">Loading Map... Please wait...</div>' . "\n";
+				$html .= '			<div class="hc-map-status" style="width: ' . $atts['mapresizerwidth'] . '; height: 20px; margin: 6px;">Loading Map... Please wait...</div>' . "\n";
 			$html .= "		</div>\n";
 		}
 		// Output Paging Buttons HTML - For Top & Bottom of results
@@ -397,8 +401,8 @@ function homecards_shortcode( $atts ) {
 		$html .= $hc_proxy->getCityPage($atts['city'], $atts['pricerange'], $atts['bedsrange'], $atts['bathsrange'], $atts['subareas']);
 		// MIGHT BE NEEDED: TODO: MERGE: wp_enqueue_style( 'hc-list-style', plugin_dir_url( __FILE__ ) . 'css/hc-list-style1.css' );	
 		wp_enqueue_style( 'components', plugin_dir_url( __FILE__ ) . 'css/components.css' );	
-		wp_enqueue_style( 'city-page-style', plugin_dir_url( __FILE__ ) . 'css/city-page-style1.css' );	
-		wp_enqueue_style( 'hc-search-results-theme', plugin_dir_url( __FILE__ ) . 'css/pd_style_blue.css' );	
+		//wp_enqueue_style( 'city-page-style', plugin_dir_url( __FILE__ ) . 'css/city-page-style1.css' );	
+		//wp_enqueue_style( 'hc-search-results-theme', plugin_dir_url( __FILE__ ) . 'css/pd_style_blue.css' );	
 		
 	} else if ($atts['page'] == "loginbox" || $atts['page'] == "login") {
 		/**** RENDER LOGIN BOX ****/

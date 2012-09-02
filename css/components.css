@@ -827,6 +827,9 @@ a.morePhotos:hover { background: url(images/more-photos-button.png) top no-repea
 #content tr td { padding: 0!important;}
 .hc_ln {color: white!important; text-shadow: 1px 1px 1px #888;}
 
+.hc-map-box{border:4px solid #fff;}
+
+
 .pikachoose {width: 300px; margin: 0 auto;}
 
 /* Style the thumbnails */
