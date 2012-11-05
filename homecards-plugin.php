@@ -18,7 +18,8 @@ error_reporting(E_ALL);
 //error_reporting(E_COMPILE_ERROR|E_RECOVERABLE_ERROR|E_ERROR|E_CORE_ERROR);
 */
 
-
+//ini_set('display_errors',1);
+//error_reporting(E_ALL);
 
 /**
 *** IMPORTANT SETTING ***
@@ -95,7 +96,7 @@ register_activation_hook( __FILE__, array('HomeCardsPlugin', 'install_plugin') )
 add_filter('the_content', 'hc_content_filter');
 add_filter('http_request_timeout', 'hc_get_http_timeout');
 function hc_get_http_timeout($timeout) {
-	return 180;
+	return 12;
 }
 
 add_filter( 'default_content', 'hc_check_default_page_content' );
@@ -818,7 +819,7 @@ function addToHitCounter($suffix = '') {
 	$hitData[0] = intval($hitData[0]) + 1;
 	/* update the $hitData array and update the session token */
 	$_SESSION['hitCount_' . $suffix] = implode('|', $hitData);
-	if (!is_admin() && $_SESSION['hitCount_' . $suffix] > 225) {
+	if (!is_admin() && $_SESSION['hitCount_' . $suffix] > 800) {
 		return -1;
 	}
 	return $_SESSION['hitCount_' . $suffix];

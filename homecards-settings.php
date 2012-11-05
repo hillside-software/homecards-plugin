@@ -100,7 +100,7 @@ function renderSettingsScript() {
 						targetList.sortable({ axis: 'y', change: function(event, ui) { } });
 					} else {
 						if (wID.length >= 5) {
-							alert("Warning: Please try again later or check for an updated version of this plugin.");
+							alert("Please enter your login credentials below or call technical support if issues persist at (303) 221-4444.");
 						}
 					}
 				//});
@@ -563,8 +563,9 @@ function hc_render_settings_form($userMsg) {
 	renderSettingsScript();
 }
 
-
 function hc_canned_search_wizard() {
+	include_once('mlsPicker.php'); 
+	hc_render_mls_picker(); 
 	echo "<div class='clr' id='hc_canned_search_window hc-autocomplete'>\n";
 	hcSearchShortCode(array('formId' => 'cannedSearch',
 		'formClassName' => 'hc-canned-search hc-autocomplete hc-ajax',

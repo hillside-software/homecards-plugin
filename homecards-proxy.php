@@ -176,15 +176,15 @@ function hc_ajax_signup() {
 
 class HomeCardsProxy {
 	var $cURL;
-	var $version = '1.5.22';
+	var $version = '1.6.0';
  	var $debugPath = '';
  	
  	var $enableCaching = true;
  	
  	/** SET YOUR HOMECARDS ACCOUNT'S VARIABLES - (OR YOU MUST UPDATE IN CODE) **/
  	//var $hc_domain_name = 'www.myhomecards.com';//'dev01.den.hillside-tech.com'; /* example: www.joshsellsdenver.com */
- 	var $login_domain_name = "www.myhomecards.com"; /* 'dev01.den.hillside-tech.com';
- 	var $hc_domain_name = "www.myhomecards.com"; /* 'dev01.den.hillside-tech.com'; //example: www.joshsellsdenver.com */
+ 	var $login_domain_name = 'dev01.den.hillside-tech.com'; // "www.myhomecards.com"; 
+ 	var $hc_domain_name = 'dev01.den.hillside-tech.com'; // "www.myhomecards.com";   example: www.joshsellsdenver.com 
  	var $webid = -1; /* example: 12345 ... Note: This is the "wID" at the end of almost all links in your site */
  	
  	/* Optional Traffic Source Modifier (used for special tracking of traffic using this HTTP Webservice Proxy) */
@@ -339,7 +339,7 @@ class HomeCardsProxy {
 		} else {// Only include the following dbg stuff if we are NOT getting the Count JSON
 			//$strHTML .= "<!-- Search.query: $queryString_str -->\n";
 		}
-		$url = 'http://' . $this->hc_domain_name . $this->debugPath . '/HCProxy.aspx?Action='. $action .'&OutputMode='. $outputMode .'&' . $queryString_str . '&Limit=' . $limit . '&Source=' . $this->hc_source_tag . '&SiteToken=' . urlencode($this->hc_get_site_token()) . '&LeadToken=' . urlencode($this->hc_get_lead_token());
+		$url = 'http://' . $this->hc_domain_name . $this->debugPath . '/HCProxy.aspx?Action='. $action .'&mls='.$_SESSION['mls'].'&OutputMode='. $outputMode .'&' . $queryString_str . '&Limit=' . $limit . '&Source=' . $this->hc_source_tag . '&SiteToken=' . urlencode($this->hc_get_site_token()) . '&LeadToken=' . urlencode($this->hc_get_lead_token());
 		
 		
 		/*
@@ -376,7 +376,7 @@ class HomeCardsProxy {
 
 	function getFeaturedListings($limit = 20) {
 		$dbgHtml = "";
-		$url = 'http://' . $this->hc_domain_name . $this->debugPath . '/HCProxy.aspx?wID=' . $this->webid . '&Action=GetFeaturedListings&Limit=' . $limit . '&Source=' . $this->hc_source_tag . '&SiteToken=' . urlencode($this->hc_get_site_token()) . '&LeadToken=' . urlencode($this->hc_get_lead_token());
+		$url = 'http://' . $this->hc_domain_name . $this->debugPath . '/HCProxy.aspx?wID=' . $this->webid . '&mls='.$_SESSION['mls'].'&Action=GetFeaturedListings&Limit=' . $limit . '&Source=' . $this->hc_source_tag . '&SiteToken=' . urlencode($this->hc_get_site_token()) . '&LeadToken=' . urlencode($this->hc_get_lead_token());
 		if ($this->debugEnabled) {echo("<!-- URL: $url \n\n\n			****** 			" . $_SERVER['DOCUMENT_ROOT'] . " -->\n");}
 		$cacheKey = "hc_ft_" . $this->webid . "";
 		//if ($this->enableCaching) {
@@ -407,7 +407,7 @@ class HomeCardsProxy {
 	}
 
 	function getFeaturedListingsJson($limit = 20) {
-		$url = 'http://' . $this->hc_domain_name . $this->debugPath . '/HCProxy.aspx?wID=' . $this->webid . '&Action=GetFeaturedListingsJson&Limit=' . $limit . '&Source=' . $this->hc_source_tag . '&SiteToken=' . urlencode($this->hc_get_site_token()) . '&LeadToken=' . urlencode($this->hc_get_lead_token());
+		$url = 'http://' . $this->hc_domain_name . $this->debugPath . '/HCProxy.aspx?wID=' . $this->webid . '&mls='.$_SESSION['mls'].'&Action=GetFeaturedListingsJson&Limit=' . $limit . '&Source=' . $this->hc_source_tag . '&SiteToken=' . urlencode($this->hc_get_site_token()) . '&LeadToken=' . urlencode($this->hc_get_lead_token());
 		$cacheKey = "hc_ft_" . $this->webid . "_js";
 		//if ($this->debugEnabled) {echo("<!-- URL: $url -->\n");}
 		//if ($this->enableCaching) {
@@ -434,7 +434,7 @@ class HomeCardsProxy {
 	}
 
 	function getAccountJson() {
-		$url = 'http://' . $this->hc_domain_name . $this->debugPath . '/HCProxy.aspx?wID=' . $this->webid . '&Action=GetAccountJson&Source=' . $this->hc_source_tag . '&SiteToken=' . urlencode($this->hc_get_site_token()) . '&LeadToken=' . urlencode($this->hc_get_lead_token()) . '&Roles=' . urlencode(hc_get_user_roles()) . '&WP_UserID=' . get_current_user_id();
+		$url = 'http://' . $this->hc_domain_name . $this->debugPath . '/HCProxy.aspx?wID=' . $this->webid . '&mls='.$_SESSION['mls'].'&Action=GetAccountJson&Source=' . $this->hc_source_tag . '&SiteToken=' . urlencode($this->hc_get_site_token()) . '&LeadToken=' . urlencode($this->hc_get_lead_token()) . '&Roles=' . urlencode(hc_get_user_roles()) . '&WP_UserID=' . get_current_user_id();
 		$cacheKey = "hc_act_" . $this->webid . "_js";
 		//if ($this->debugEnabled) {echo("<!-- URL: $url -->\n");}
 		//	if ($this->enableCaching) {
@@ -463,7 +463,7 @@ class HomeCardsProxy {
 	function getFullPropertyDetails($listingId) {
 		$start = microtime(true);
 		if (! isset($limit)) {$limit = 20;}
-		$url = 'http://' . $this->hc_domain_name . $this->debugPath . '/HCProxy.aspx?wID=' . $this->webid . '&Action=GetFullPropertyDetails&ListingID=' . $listingId . '&Source=' . $this->hc_source_tag . '&SiteToken=' . urlencode($this->hc_get_site_token()) . '&LeadToken=' . urlencode($this->hc_get_lead_token()) . '&WP_UserID=' . get_current_user_id();
+		$url = 'http://' . $this->hc_domain_name . $this->debugPath . '/HCProxy.aspx?wID=' . $this->webid . '&mls='.$_SESSION['mls'].'&Action=GetFullPropertyDetails&ListingID=' . $listingId . '&Source=' . $this->hc_source_tag . '&SiteToken=' . urlencode($this->hc_get_site_token()) . '&LeadToken=' . urlencode($this->hc_get_lead_token()) . '&WP_UserID=' . get_current_user_id();
 		if ($this->debugEnabled) {echo("<!-- URL: $url -->\n");}
 		$getReq = wp_remote_get($url, array('headers' =>$this->hc_getNewHeaders() ) );
 		$strHTML = wp_remote_retrieve_body($getReq);
@@ -474,7 +474,7 @@ class HomeCardsProxy {
 	function getFullPropertyDetailsJSON($listingId) {
 		$start = microtime(true);
 		if (! isset($limit)) {$limit = 20;}
-		$url = 'http://' . $this->hc_domain_name . $this->debugPath . '/HCProxy.aspx?wID=' . $this->webid . '&Action=GetFullPropertyDetails&ListingID=' . $listingId . '&Source=' . $this->hc_source_tag . '&SiteToken=' . urlencode($this->hc_get_site_token()) . '&LeadToken=' . urlencode($this->hc_get_lead_token()) . '&WP_UserID=' . get_current_user_id() . '&outputMode=JSON';
+		$url = 'http://' . $this->hc_domain_name . $this->debugPath . '/HCProxy.aspx?wID=' . $this->webid . '&mls='.$_SESSION['mls'].'&Action=GetFullPropertyDetails&ListingID=' . $listingId . '&Source=' . $this->hc_source_tag . '&SiteToken=' . urlencode($this->hc_get_site_token()) . '&LeadToken=' . urlencode($this->hc_get_lead_token()) . '&WP_UserID=' . get_current_user_id() . '&outputMode=JSON';
 		if ($this->debugEnabled) {echo("<!-- URL: $url -->\n");}
 		$getReq = wp_remote_get($url, array('headers' =>$this->hc_getNewHeaders() ) );
 		$strHTML = wp_remote_retrieve_body($getReq);
@@ -486,7 +486,7 @@ class HomeCardsProxy {
 	function getSearchForm($col1, $col2, $col3) {
 		$start = microtime(true);
 		if (! isset($col1)) {$col1 = "Area,Beds,Baths,PriceFrom,PriceTo,Subarea,MLSRemarks,Zip";}
-		$url = 'http://' . $this->hc_domain_name . $this->debugPath . '/HCProxy.aspx?wID=' . $this->webid . '&Action=GetHtmlSearchForm&CssPrefix=' . $formPrefix . '&IncludeFieldsCSV=' . $col1 . '&Source=' . $this->hc_source_tag . '&SiteToken=' . urlencode($this->hc_get_site_token()) . '&LeadToken=' . urlencode($this->hc_get_lead_token()) . '&WP_UserID=' . get_current_user_id();
+		$url = 'http://' . $this->hc_domain_name . $this->debugPath . '/HCProxy.aspx?wID=' . $this->webid . '&mls='.$_SESSION['mls'].'&Action=GetHtmlSearchForm&CssPrefix=' . $formPrefix . '&IncludeFieldsCSV=' . $col1 . '&Source=' . $this->hc_source_tag . '&SiteToken=' . urlencode($this->hc_get_site_token()) . '&LeadToken=' . urlencode($this->hc_get_lead_token()) . '&WP_UserID=' . get_current_user_id();
 		if ($this->debugEnabled) {echo("<!-- URL: $url -->\n");}
 		$cacheKey = "hc_search_" . $this->webid . "_" . substr(md5($col1 . $col2 . $col3, false), 0, 10);
 		//if ($this->enableCaching) {
@@ -515,7 +515,7 @@ class HomeCardsProxy {
 			//if ($this->debugEnabled) { echo("<!-- *** getSearchFormHtmlAndJson " . (microtime(true) - $start) . " GLOBALS *** -->\n"); }
 			return $hc_getSearchFormHtmlAndJson; 
 		}
-		$url = 'http://' . $this->hc_domain_name . $this->debugPath . '/HCProxy.aspx?wID=' . $this->webid . '&Action=GetSearchFormHtmlAndJson&Source=' . $this->hc_source_tag . '&SiteToken=' . urlencode($this->hc_get_site_token()) . '&LeadToken=' . urlencode($this->hc_get_lead_token()) . '&WP_UserID=' . get_current_user_id();
+		$url = 'http://' . $this->hc_domain_name . $this->debugPath . '/HCProxy.aspx?wID=' . $this->webid . '&mls='.$_SESSION['mls'].'&Action=GetSearchFormHtmlAndJson&Source=' . $this->hc_source_tag . '&SiteToken=' . urlencode($this->hc_get_site_token()) . '&LeadToken=' . urlencode($this->hc_get_lead_token()) . '&WP_UserID=' . get_current_user_id();
 		$cacheKey = "hc_searchform_json_" . $this->webid;
 		if ($this->enableCaching) { $t = hc_get($cacheKey); } else {$t = "";}
 		if (strlen($t) > 5) { return $t; }
@@ -538,7 +538,7 @@ class HomeCardsProxy {
 			//if ($this->debugEnabled) { echo("<!-- *** getSearchFieldsCSV " . (microtime(true) - $start) . " GLOBALS *** -->\n"); }
 			return $hc_getSearchFieldsCSV; 
 		}
-		$url = 'http://' . $this->hc_domain_name . $this->debugPath . '/HCProxy.aspx?wID=' . $this->webid . '&Action=GetSearchFieldsCSV&Source=' . $this->hc_source_tag . '&SiteToken=' . urlencode($this->hc_get_site_token()) . '&LeadToken=' . urlencode($this->hc_get_lead_token()) . '&WP_UserID=' . get_current_user_id();
+		$url = 'http://' . $this->hc_domain_name . $this->debugPath . '/HCProxy.aspx?wID=' . $this->webid . '&mls='.$_SESSION['mls'].'&Action=GetSearchFieldsCSV&Source=' . $this->hc_source_tag . '&SiteToken=' . urlencode($this->hc_get_site_token()) . '&LeadToken=' . urlencode($this->hc_get_lead_token()) . '&WP_UserID=' . get_current_user_id();
 		$cacheKey = "hc_searchform_csv_" . $this->webid;
 		$t = hc_get($cacheKey);
 		if (strlen($t) > 5) { return $t; }
@@ -563,7 +563,7 @@ class HomeCardsProxy {
 			return $hc_getSearchFieldsJSON; 
 		}
 		$strHTML = "";
-		$url = 'http://' . $this->hc_domain_name . $this->debugPath . '/HCProxy.aspx?wID=' . $this->webid . '&Action=GetSearchFieldsJSON&Source=' . $this->hc_source_tag . '&SiteToken=' . urlencode($this->hc_get_site_token()) . '&LeadToken=' . urlencode($this->hc_get_lead_token()) . '&WP_UserID=' . get_current_user_id();
+		$url = 'http://' . $this->hc_domain_name . $this->debugPath . '/HCProxy.aspx?wID=' . $this->webid . '&mls='.$_SESSION['mls'].'&Action=GetSearchFieldsJSON&Source=' . $this->hc_source_tag . '&SiteToken=' . urlencode($this->hc_get_site_token()) . '&LeadToken=' . urlencode($this->hc_get_lead_token()) . '&WP_UserID=' . get_current_user_id();
 		if ($this->debugEnabled) {echo("<!-- URL: $url -->\n");}
 		//$cacheKey = "hc_getsearchfieldsjson_" . $this->webid;
 		//if ($this->debugEnabled && $this->enableCaching == false) { hc_set($cacheKey); }
@@ -589,7 +589,7 @@ class HomeCardsProxy {
 		} else if ( $this->enableCaching == false ) {// let's remove any cached values
 			hc_set('hc_disclaimer', null, 1);
 		}
-		$url = 'http://' . $this->hc_domain_name . $this->debugPath . '/HCProxy.aspx?wID=' . $this->webid . '&Action=Disclaimer&Source=' . $this->hc_source_tag . '&SiteToken=' . urlencode($this->hc_get_site_token()) . '&LeadToken=' . urlencode($this->hc_get_lead_token()) . '&WP_UserID=' . get_current_user_id();
+		$url = 'http://' . $this->hc_domain_name . $this->debugPath . '/HCProxy.aspx?wID=' . $this->webid . '&mls='.$_SESSION['mls'].'&Action=Disclaimer&Source=' . $this->hc_source_tag . '&SiteToken=' . urlencode($this->hc_get_site_token()) . '&LeadToken=' . urlencode($this->hc_get_lead_token()) . '&WP_UserID=' . get_current_user_id();
 		if ($this->debugEnabled) {echo("<!-- URL: $url -->\n");}
 		$getReq = wp_remote_get($url);
 		$strHTML = wp_remote_retrieve_body($getReq);
@@ -609,14 +609,14 @@ class HomeCardsProxy {
 		// IMPORTANT: Now forcing &amp; always pointing to: login_domain_name
 		$url = 'http://' . $this->login_domain_name . $this->debugPath . '/HCProxy.aspx';
 		if ($this->debugEnabled) {echo("<!-- URL: $url -->\n");}
-		$qs = 'Action=GetAccountInfo&Login=' . urlencode($login) . '&Pass=' . urlencode($pass) . '&Source=' . $this->hc_source_tag . '&SiteToken=' . urlencode($this->hc_get_site_token()) . '&LeadToken=' . urlencode($this->hc_get_lead_token()) . '&Roles=' . urlencode(hc_get_user_roles()) . '&WP_UserID=' . get_current_user_id();
+		$qs = 'Action=GetAccountInfo&Login=' . urlencode($login) . '&mls='.$_SESSION['mls'].'&Pass=' . urlencode($pass) . '&Source=' . $this->hc_source_tag . '&SiteToken=' . urlencode($this->hc_get_site_token()) . '&LeadToken=' . urlencode($this->hc_get_lead_token()) . '&Roles=' . urlencode(hc_get_user_roles()) . '&WP_UserID=' . get_current_user_id();
 		// USE TO GET THE VALUES OUT OF RESPONSE: parse_str($qs, $pairs);
 		//parse_str($qs, $pairs);
 		//if ($this->debugEnabled) {echo("<!-- QS: $qs -->\n");}
 		//if ($this->debugEnabled) {echo("<!-- pairs: $pairs -->\n");}
 		$httpOpts = array('method' => 'POST',
 			'body' => $qs,
-			'timeout' => 30,
+			'timeout' => 7,
 			'blocking' => true);
 		$request = new WP_Http;
 		$result = $request->request( $url, $httpOpts );
@@ -634,7 +634,7 @@ class HomeCardsProxy {
 		$this->checkRequestLimiter(10, 'trusted_login');
 		/*			NONCE EXAMPLE CODE (should be generated, then passed into these proxy functions to it can be verified before submitting a server request.):
 						$nonce = wp_create_nonce("hc-login"); */
-		$url = 'http://' . $this->hc_domain_name . $this->debugPath . '/HCProxy.aspx?wID=' . $this->webid . '&Action=LeadLoginWithToken&Email=' . urlencode($email) . '&SiteToken=' . urlencode($this->hc_get_site_token()) . '&LeadToken=' . urlencode($this->hc_get_lead_token()) . '&Source=' . $this->hc_source_tag . '&Roles=' . urlencode(hc_get_user_roles()) . '&WP_UserID=' . get_current_user_id();
+		$url = 'http://' . $this->hc_domain_name . $this->debugPath . '/HCProxy.aspx?wID=' . $this->webid . '&mls='.$_SESSION['mls'].'&Action=LeadLoginWithToken&Email=' . urlencode($email) . '&SiteToken=' . urlencode($this->hc_get_site_token()) . '&LeadToken=' . urlencode($this->hc_get_lead_token()) . '&Source=' . $this->hc_source_tag . '&Roles=' . urlencode(hc_get_user_roles()) . '&WP_UserID=' . get_current_user_id();
 		//if ($this->debugEnabled) {echo("<!-- URL: $url -->\n");}
 		$getReq = wp_remote_get($url, array('headers' =>$this->hc_getNewHeaders() ) );
 		$strHTML = wp_remote_retrieve_body($getReq);
@@ -654,7 +654,7 @@ class HomeCardsProxy {
 		$this->checkRequestLimiter(30, 'login');
 		$url = 'http://' . $this->hc_domain_name . $this->debugPath . '/HCProxy.aspx';
 		$wp_username = 'n/a';
-		$qs = 'wID=' . $this->webid . '&WebID=' . $this->webid . '&Action=LeadLogin&Email=' . urlencode($email) . '&Pass=' . urlencode($password) . '&Source=' . $this->hc_source_tag . '&BlogURL=' . urlencode(site_url()) . '&Username=' . urlencode($wp_username) . '&SiteToken=' . urlencode($this->hc_get_site_token()) . '&LeadToken=' . urlencode($this->hc_get_lead_token()) . '&Roles=' . urlencode(hc_get_user_roles()) . '&WP_UserID=' . get_current_user_id();
+		$qs = 'wID=' . $this->webid . '&WebID=' . $this->webid . '&mls='.$_SESSION['mls'].'&Action=LeadLogin&Email=' . urlencode($email) . '&Pass=' . urlencode($password) . '&Source=' . $this->hc_source_tag . '&BlogURL=' . urlencode(site_url()) . '&Username=' . urlencode($wp_username) . '&SiteToken=' . urlencode($this->hc_get_site_token()) . '&LeadToken=' . urlencode($this->hc_get_lead_token()) . '&Roles=' . urlencode(hc_get_user_roles()) . '&WP_UserID=' . get_current_user_id();
 		// USE TO GET THE VALUES OUT OF RESPONSE: parse_str($qs, $pairs);
 		//parse_str($qs, $pairs);
 		
@@ -664,7 +664,7 @@ class HomeCardsProxy {
 		$strHTML = wp_remote_retrieve_body($getReq);*/
 		$httpOpts = array('method' => 'POST',
 			'body' => $qs,
-			'timeout' => 90,
+			'timeout' => 15,
 			'blocking' => true);
 		$request = new WP_Http;
 		$result = $request->request( $url, $httpOpts );
@@ -704,7 +704,7 @@ class HomeCardsProxy {
 	function consumerSignup($name, $phone, $email, $password, $source, $refererURL) {
 		$this->checkRequestLimiter(4, 'signup');
 		if (empty($source) || strlen($source) < 1) { $source = $this->hc_source_tag; }
-		$url = 'http://' . $this->hc_domain_name . $this->debugPath . '/HCProxy.aspx?wID=' . $this->webid . '&Action=LeadSignup&SignupName=' . urlencode($name) . '&SignupPhone=' . urlencode($phone) . '&SignupEmail=' . urlencode($email) . '&SignupPassword=' . urlencode($password) . '&Source=' . urlencode($source) . '&RefererURL=' . urlencode($refererURL) . '&SiteToken=' . urlencode($this->hc_get_site_token()) . '&LeadToken=' . urlencode($this->hc_get_lead_token()) . '&Roles=' . urlencode(hc_get_user_roles()) . '&WP_UserID=' . get_current_user_id();
+		$url = 'http://' . $this->hc_domain_name . $this->debugPath . '/HCProxy.aspx?wID=' . $this->webid . '&mls='.$_SESSION['mls'].'&Action=LeadSignup&SignupName=' . urlencode($name) . '&SignupPhone=' . urlencode($phone) . '&SignupEmail=' . urlencode($email) . '&SignupPassword=' . urlencode($password) . '&Source=' . urlencode($source) . '&RefererURL=' . urlencode($refererURL) . '&SiteToken=' . urlencode($this->hc_get_site_token()) . '&LeadToken=' . urlencode($this->hc_get_lead_token()) . '&Roles=' . urlencode(hc_get_user_roles()) . '&WP_UserID=' . get_current_user_id();
 		
 		//if ($this->debugEnabled) {echo("<!-- URL: $url -->\n");}
 		$getReq = wp_remote_get($url, array('headers' =>$this->hc_getNewHeaders() ) );
@@ -791,7 +791,7 @@ class HomeCardsProxy {
 	}
 	function getCityPage($area, $priceRange, $bedsRange, $bathsRange, $subarea) {
 		$dbgHtml = "";
-		$url = 'http://' . $this->hc_domain_name . $this->debugPath . '/HCProxy.aspx?wID=' . $this->webid . '&Action=GetCityPage&Area=' . urlencode($area) . '&PriceRange=' . urlencode($priceRange) . '&BedsRange=' . urlencode($bedsRange) . '&BathsRange=' . urlencode($bathsRange) . '&Subarea=' . urlencode($subarea) . '&WP_UserID=' . get_current_user_id();
+		$url = 'http://' . $this->hc_domain_name . $this->debugPath . '/HCProxy.aspx?wID=' . $this->webid . '&mls='.$_SESSION['mls'].'&Action=GetCityPage&Area=' . urlencode($area) . '&PriceRange=' . urlencode($priceRange) . '&BedsRange=' . urlencode($bedsRange) . '&BathsRange=' . urlencode($bathsRange) . '&Subarea=' . urlencode($subarea) . '&WP_UserID=' . get_current_user_id();
 		$cacheKey = "hc_city_" . md5($url, false);
 
 		if ($this->debugEnabled == false) {
@@ -812,7 +812,7 @@ class HomeCardsProxy {
 	//TODO: Make token handling better below
 	function getSavedListingsJSON($cID) {
 		$dbgHtml = "";
-		$url = 'http://' . $this->hc_domain_name . $this->debugPath . '/HCProxy.aspx?wID=' . $this->webid . '&Action=GetSavedListingsJSON' . '&Roles=' . urlencode(hc_get_user_roles()) . '&SiteToken=' . urlencode($this->hc_get_site_token()) . '&LeadToken=' . urlencode($this->hc_get_lead_token());
+		$url = 'http://' . $this->hc_domain_name . $this->debugPath . '/HCProxy.aspx?wID=' . $this->webid . '&mls='.$_SESSION['mls'].'&Action=GetSavedListingsJSON' . '&Roles=' . urlencode(hc_get_user_roles()) . '&SiteToken=' . urlencode($this->hc_get_site_token()) . '&LeadToken=' . urlencode($this->hc_get_lead_token());
 		if (isset($cID)) { $url .= "&cID=" . $cID;}
 		//if ($this->debugEnabled) {$dbgHtml .= "<!-- URL: $url -->\n";}
 		$getReq = wp_remote_get($url, array( 'headers' =>$this->hc_getNewHeaders() ) );
@@ -825,7 +825,7 @@ class HomeCardsProxy {
 	
 	
 	function saveProperty($listingId, $cID, $sourceName, $authToken, $notes) {
-		$url = 'http://' . $this->hc_domain_name . $this->debugPath . '/HCProxy.aspx?wID=' . $this->webid . '&Action=SavePropertyJson&ListingID=' . urlencode($listingId) . '&Source=' . urlencode($sourceName) . '&Roles=' . urlencode(hc_get_user_roles()) . '&WP_UserID=' . get_current_user_id() . '&SiteToken=' . urlencode($this->hc_get_site_token()) . '&LeadToken=' . urlencode($this->hc_get_lead_token());
+		$url = 'http://' . $this->hc_domain_name . $this->debugPath . '/HCProxy.aspx?wID=' . $this->webid . '&mls='.$_SESSION['mls'].'&Action=SavePropertyJson&ListingID=' . urlencode($listingId) . '&Source=' . urlencode($sourceName) . '&Roles=' . urlencode(hc_get_user_roles()) . '&WP_UserID=' . get_current_user_id() . '&SiteToken=' . urlencode($this->hc_get_site_token()) . '&LeadToken=' . urlencode($this->hc_get_lead_token());
 		$postData = array('Notes' => $notes);
 		$url .= "&cID=" . urlencode($cID);
 		$url .= "&AuthToken=" . urlencode($authToken);
@@ -856,7 +856,7 @@ AddToEmailLog - THIS FUNC DOES NOT ACTUALLY SEND AN EMAIL - IT LETS YOU TELL THE
 	}
 	*/
 	function addToEmailLog($emailData) {
-		$url = 'http://' . $this->hc_domain_name . $this->debugPath . '/HCProxy.aspx?wID=' . $this->webid . '&Action=AddToEmailLog' . '&Roles=' . urlencode(hc_get_user_roles()) . '&WP_UserID=' . get_current_user_id();
+		$url = 'http://' . $this->hc_domain_name . $this->debugPath . '/HCProxy.aspx?wID=' . $this->webid . '&mls='.$_SESSION['mls'].'&Action=AddToEmailLog' . '&Roles=' . urlencode(hc_get_user_roles()) . '&WP_UserID=' . get_current_user_id();
 		if ( isset($this->token) ) { $url .= "&AuthToken=" . urlencode($this->token); }
 		if ( isset($_REQUEST['LeadToken']) ) { $url .= "&LeadToken=" . urlencode($_REQUEST['LeadToken']); }
 		$getReq = wp_remote_post( $url, array('body' => $emailData, 'headers' =>$this->hc_getNewHeaders()) );
@@ -890,7 +890,7 @@ eventType Must be One of these options: Appointments, Bookmark, Charts, Featured
 ASPX's POST Fields: eventType, subType, referrerUrl, url, remoteIP, remoteHost, remoteUserAgent, customSessionID
 */
 	function logHomeCardsEvent($eventType, $subtype, $log_url, $remoteIp, $remoteHost, $listingId = '') {
-		$url = 'http://' . $this->hc_domain_name . $this->debugPath . '/HCProxy.aspx?wID=' . $this->webid . '&Action=LogActivity' . '&Roles=' . urlencode(hc_get_user_roles()) . '&WP_UserID=' . get_current_user_id();
+		$url = 'http://' . $this->hc_domain_name . $this->debugPath . '/HCProxy.aspx?wID=' . $this->webid . '&mls='.$_SESSION['mls'].'&Action=LogActivity' . '&Roles=' . urlencode(hc_get_user_roles()) . '&WP_UserID=' . get_current_user_id();
 		if ( isset($this->token) ) { $url .= "&AuthToken=" . urlencode($this->token); }
 		if ( isset($_REQUEST['LeadToken']) ) { $url .= "&LeadToken=" . urlencode($_REQUEST['LeadToken']); }
 		$getReq = wp_remote_post( $url, array('body' => array(
@@ -913,7 +913,7 @@ ASPX's POST Fields: eventType, subType, referrerUrl, url, remoteIP, remoteHost, 
 	/* getAgentJSON */
 	function getWebAgent() {
 		$agInfo = hc_checkSession();
-		$url = 'http://' . $this->hc_domain_name . $this->debugPath . '/HCProxy.aspx?wID=' . $this->webid . '&Action=GetWebAgent&Source=' . $this->hc_source_tag . '&SiteToken=' . urlencode($this->hc_get_site_token()) . '&LeadToken=' . urlencode($this->hc_get_lead_token()) . '&Roles=' . urlencode(hc_get_user_roles()) . '&WP_UserID=' . get_current_user_id();
+		$url = 'http://' . $this->hc_domain_name . $this->debugPath . '/HCProxy.aspx?wID=' . $this->webid . '&mls='.$_SESSION['mls'].'&Action=GetWebAgent&Source=' . $this->hc_source_tag . '&SiteToken=' . urlencode($this->hc_get_site_token()) . '&LeadToken=' . urlencode($this->hc_get_lead_token()) . '&Roles=' . urlencode(hc_get_user_roles()) . '&WP_UserID=' . get_current_user_id();
 		if ($this->debugEnabled) {echo("<!-- URL: $url -->\n");}
 		$getReq = wp_remote_get($url, array('headers' =>$this->hc_getNewHeaders() ) );
 		$strHTML = wp_remote_retrieve_body($getReq);
@@ -921,7 +921,7 @@ ASPX's POST Fields: eventType, subType, referrerUrl, url, remoteIP, remoteHost, 
 	}
 	/* getAgentFields Gets CSV of Available Fields */
 	function getAgentFields() {
-		$url = 'http://' . $this->hc_domain_name . $this->debugPath . '/HCProxy.aspx?wID=' . $this->webid . '&Action=GetAgentFields&Source=' . $this->hc_source_tag . '&SiteToken=' . urlencode($this->hc_get_site_token()) . '&LeadToken=' . urlencode($this->hc_get_lead_token()) . '&Roles=' . urlencode(hc_get_user_roles()) . '&WP_UserID=' . get_current_user_id();
+		$url = 'http://' . $this->hc_domain_name . $this->debugPath . '/HCProxy.aspx?wID=' . $this->webid . '&mls='.$_SESSION['mls'].'&Action=GetAgentFields&Source=' . $this->hc_source_tag . '&SiteToken=' . urlencode($this->hc_get_site_token()) . '&LeadToken=' . urlencode($this->hc_get_lead_token()) . '&Roles=' . urlencode(hc_get_user_roles()) . '&WP_UserID=' . get_current_user_id();
 		if ($this->debugEnabled) {echo("<!-- URL: $url -->\n");}
 		$getReq = wp_remote_get($url, array('headers' =>$this->hc_getNewHeaders() ) );
 		$strHTML = wp_remote_retrieve_body($getReq);
@@ -930,7 +930,7 @@ ASPX's POST Fields: eventType, subType, referrerUrl, url, remoteIP, remoteHost, 
 	function getLocalStatsByRadius() {
 		$radius = '1'; /* Should now be in miles - Dan: 2012-04-01 */
 		if ( isset($_REQUEST['radius']) ) {$radius = $_REQUEST['radius'];}
-		$url = 'http://' . $this->hc_domain_name . $this->debugPath . '/HCProxy.aspx?wID=' . $this->webid . '&Action=GetLocalStats&Lat=' . urlencode($_REQUEST['lat']) . '&Lon=' . urlencode($_REQUEST['lon']) . '&Radius=' . $radius . '&OutputMode=HTML&Source=' . $this->hc_source_tag . '&SiteToken=' . urlencode($this->hc_get_site_token()) . '&LeadToken=' . urlencode($this->hc_get_lead_token()) . '&Roles=' . urlencode(hc_get_user_roles()) . '&WP_UserID=' . get_current_user_id();
+		$url = 'http://' . $this->hc_domain_name . $this->debugPath . '/HCProxy.aspx?wID=' . $this->webid . '&mls='.$_SESSION['mls'].'&Action=GetLocalStats&Lat=' . urlencode($_REQUEST['lat']) . '&Lon=' . urlencode($_REQUEST['lon']) . '&Radius=' . $radius . '&OutputMode=HTML&Source=' . $this->hc_source_tag . '&SiteToken=' . urlencode($this->hc_get_site_token()) . '&LeadToken=' . urlencode($this->hc_get_lead_token()) . '&Roles=' . urlencode(hc_get_user_roles()) . '&WP_UserID=' . get_current_user_id();
 		if ($this->debugEnabled) {echo("<!-- URL: $url -->\n");}
 		$getReq = wp_remote_get($url, array('headers' =>$this->hc_getNewHeaders() ) );
 		$strHTML = wp_remote_retrieve_body($getReq);
@@ -940,7 +940,7 @@ ASPX's POST Fields: eventType, subType, referrerUrl, url, remoteIP, remoteHost, 
 	/* UpdatedJSON */
 	function updateAccountInfo($json) {
 		/* TODO: Add security here */
-		$url = 'http://' . $this->hc_domain_name . $this->debugPath . '/HCProxy.aspx?wID=' . $this->webid . '&Action=UpdateAccountInfo&Source=' . $this->hc_source_tag . '&SiteToken=' . urlencode($this->hc_get_site_token()) . '&LeadToken=' . urlencode($this->hc_get_lead_token()) . '&Roles=' . urlencode(hc_get_user_roles()) . '&WP_UserID=' . get_current_user_id();// . '&JSON=' . urlencode($json);
+		$url = 'http://' . $this->hc_domain_name . $this->debugPath . '/HCProxy.aspx?wID=' . $this->webid . '&mls='.$_SESSION['mls'].'&Action=UpdateAccountInfo&Source=' . $this->hc_source_tag . '&SiteToken=' . urlencode($this->hc_get_site_token()) . '&LeadToken=' . urlencode($this->hc_get_lead_token()) . '&Roles=' . urlencode(hc_get_user_roles()) . '&WP_UserID=' . get_current_user_id();// . '&JSON=' . urlencode($json);
 		if ( isset( $_REQUEST['hc_custom_signup_html']) ) { add_option('hc_signup_html', $_REQUEST['hc_custom_signup_html']);}
 		//if ($this->debugEnabled) {echo("<!-- URL: $url -->\n"); echo("<!-- JSON: $json -->\n");}
 		//$getReq = wp_remote_get($url, array('headers' =>$this->hc_getNewHeaders() ) );
