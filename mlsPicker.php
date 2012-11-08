@@ -13,11 +13,8 @@ function hc_render_mls_picker() {
 			Please choose the MLS you would like to search: 
 		</label>
 		<select name="mls" size='1'>
-			<option value="DEN">
+			<option value="">
 				Denver/Central-Colorado
-			</option>
-			<option value="PPA">
-				Pike's Peak 
 			</option>
 			<option value="IRE">
 				Boulder
