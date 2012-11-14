@@ -35,6 +35,7 @@ function homecards_search_shortcode( $atts ) {
 		$myPrice = explode('-', $atts['price']);
 		$atts['pricefrom'] = $myPrice[0];
 		$atts['priceto'] = $myPrice[1];
+		
 		unset($atts['price']);
 	}
 	return homecards_shortcode( array( 'page' => 'runsearch', 
@@ -66,6 +67,7 @@ function homecards_shortcode( $atts ) {
 			'mapheight' => '350px',
 			'mapwidth' => 'auto',
 			'mapheight' => '350px',
+			//'mlsProvider' => '',
 			'mapresizerwidth' => '750px',
 			'mapresizerheight' => '450px'
 		), $atts );
@@ -133,6 +135,7 @@ function homecards_shortcode( $atts ) {
 		if ( stripos($atts['query'], "%3B") ) {
 			// DONE: Check if URL Decode is needed on the following call... HINT: Look for %3B
 			$atts['query'] = urldecode($atts['query']);
+			var_dump($_POST);
 		}
 		$myArray = proper_parse_str(stripslashes($atts['query']));
 	} else {
@@ -207,6 +210,13 @@ function homecards_shortcode( $atts ) {
 		/* TODO: Check if we have a valid myArray to query */
 		if ( isset($myArray['area']) && empty($myArray['Area']) ) { $myArray['Area'] = $myArray['area']; }
 		
+		/* Assign mlsProvider if different than default */ 
+		//$myArray['mlsProvider'] = $_SESSION['mls']; 
+		//$_SESSION['mls'] = ""; 
+		
+		if(!empty($myArray['mls'])) { $_SESSION['mls'] = $myArray['mls']; }
+		
+		//if ( empty($myArray['mlsProvider']) ) { $myArray['mlsProvider'] = ''; }
 		if ( empty($myArray['Area']) ) { $myArray['Area'] = ''; }
 		if (is_array($myArray['Area'])) {// This is to handle old functionality - Dan: 2012-02-22
 			/* If we get an ARRAY for area, JOIN the Area into a CSV string */
@@ -374,6 +384,7 @@ function homecards_shortcode( $atts ) {
 		$html .= "		<div class='hc-results-paging'>\n</div>\n";
 		/* HERE'S WHERE THE FORM GET'S PUT TOGETHER & INCLUDED */
 		$hc_html_form = hc_renderSearchForm($atts['col1'], $atts['col2'], $atts['col3']);
+		$html .= '<label for="mls">Select Desired MLS Provider: </label><select name="mls" id="mls" size="1"><option value="">Denver/Central-Colorado</option><option value="IRE">Boulder</option></select>';
 		$html .= $hc_html_form;
 		// Show button after form
 		$html .= "			<button class=\"hc-btn-search\" name='hc_search_button' value='search'>Search Now</button>\n";

@@ -80,7 +80,7 @@ $searchFields = array();
 		if (isset($atts['page']) && $atts['page'] == 'search') {
 			//enqueue some scripts for awesome.
 			wp_enqueue_style( 'hc-shortcode-search', plugin_dir_url( __FILE__ ) . 'css/search.css' );	
-			
+
 			//these need to be defined anywhere used at the moment
 			if (!isset($searchFields) ){ $searchFields = json_decode(hc_get_fields());}
 			if (!isset($htmlFieldTable) ){ $htmlFieldTable = json_decode(hc_get_fields_html());}
@@ -89,6 +89,7 @@ $searchFields = array();
 		<?php
 		if ( isset($atts['formTitle']) && strlen($atts['formTitle']) > 1 ) { echo('<h2>' . $atts['formTitle'] . '</h2>'); }
 		if ( isset($atts['pageInfoHtml']) && strlen( $atts['pageInfoHtml'] ) > 1 ) { echo('<p>' . $atts['pageInfoHtml'] . "</p>\n"); }
+		
 		
 		/*wp_deregister_script( 'jquery' );
 		wp_deregister_script( 'jquery-ui' );
@@ -132,6 +133,7 @@ switch ($atts['mode']) {
 	case 'cannedsearch':
 		echo '				<div class="clear"></div>' . "\n";
 		echo '				<div class="shortcode-result"><small>click the button when you have completed your search criteria</small></div>' . "\n";
+		echo '				<label for="mls">MLS Provider: </label><select id="mls" name="mls"><option value="DEN">Denver</option><option value="IRE">IRE</option><option value="PPA">Pike\'s Peak</option></select><br />';
 		echo '				<input type="button" value="Make Shortcode" class="clear headSearchSubmit search-shortcode-btn button-primary" />' . "\n";
 		echo '				<input type="button" value="Make Page w/ Shortcode" class="clear headSearchSubmit create-page-shortcode-btn" />' . "\n";
 		echo '				<input type="submit" value="Set Search Defaults" class="clear headSearchSubmit hc-set-search-defaults" />' . "\n";

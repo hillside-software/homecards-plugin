@@ -564,8 +564,8 @@ function hc_render_settings_form($userMsg) {
 }
 
 function hc_canned_search_wizard() {
-	include_once('mlsPicker.php'); 
-	hc_render_mls_picker(); 
+	// include_once('mlsPicker.php'); 
+	//hc_render_mls_picker(); 
 	echo "<div class='clr' id='hc_canned_search_window hc-autocomplete'>\n";
 	hcSearchShortCode(array('formId' => 'cannedSearch',
 		'formClassName' => 'hc-canned-search hc-autocomplete hc-ajax',

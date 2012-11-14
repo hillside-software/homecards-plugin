@@ -3,9 +3,7 @@ function hc_render_mls_picker() {
 	if(isset($_POST['submit'])) { 
 		session_start();
 		$_SESSION['mls'] = $_POST['mls']; 
-		// echo "<strong style='font-size:1.4em'>You are now searching the <em>".$_SESSION['mls']."</em> database.</strong>"; 
 	} ELSE { 
-		// echo "<strong style='font-size:1.4em'>You are now searching the <em>Metrolist</em> database.</strong>"; 
 	}
 	?>
 	<form name="mlsPicker" method="POST">
