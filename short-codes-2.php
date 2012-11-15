@@ -223,8 +223,11 @@ switch ($atts['mode']) {
 				}
 				for (fieldName in newData) {
 					field = {name: fieldName, value: newData[fieldName] };
-					if (field.value && field.value.length >=1) {
-						shortCode += " " + field.name + "=\"" + field.value.urlDecode().trim(",").htmlEncode() + "\"";
+					// TODO: Remove this hackish fix for allowing default behavior of mls="" => mls="DEN"
+					if (field.value && field.value.length >=1 ) {
+						if(field.value == "DEN" && field.name == "mls") { } else { 
+							shortCode += " " + field.name + "=\"" + field.value.urlDecode().trim(",").htmlEncode() + "\"";
+						}
 					}
 				}
 				return '[homecardssearch' + shortCode + ' polygonCsv="' + (typeof polygonCsvData == 'undefined' ? '' : polygonCsvData) + '"]';

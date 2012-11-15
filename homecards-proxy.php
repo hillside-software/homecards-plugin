@@ -299,7 +299,7 @@ class HomeCardsProxy {
 		if (gettype($queryString) == 'array') {
 			foreach ($queryString as $k => $v) {
 				// EXCLUDE query values: action, wID, col1, col2, col3
-				if ( strtolower($k) != 'action' && strtolower($k) != 'wid' && strtolower($k) != 'col1' && strtolower($k) != 'col2' && strtolower($k) != 'col3' ) {
+				if ( strtolower($k) != 'action' && strtolower($k) != 'mls' && strtolower($k) != 'wid' && strtolower($k) != 'col1' && strtolower($k) != 'col2' && strtolower($k) != 'col3' ) {
 					if (is_array($v) ) { $v = implode(',',$v);}
 					if ( stripos( $k . $v, '%' ) <= 0 || stripos($k . $v, '&') >= 0  ) {
 						// UrlEncode the values, skip this step if the value is already urlencoded (Percents should not normally occur in search queries)
@@ -339,7 +339,7 @@ class HomeCardsProxy {
 		} else {// Only include the following dbg stuff if we are NOT getting the Count JSON
 			//$strHTML .= "<!-- Search.query: $queryString_str -->\n";
 		}
-		$url = 'http://' . $this->hc_domain_name . $this->debugPath . '/HCProxy.aspx?Action='. $action .'&mls='.$_SESSION['mls'].'&OutputMode='. $outputMode .'&' . $queryString_str . '&Limit=' . $limit . '&Source=' . $this->hc_source_tag . '&SiteToken=' . urlencode($this->hc_get_site_token()) . '&LeadToken=' . urlencode($this->hc_get_lead_token());
+		$url = 'http://' . $this->hc_domain_name . $this->debugPath . '/HCProxy.aspx?Action='. $action .'&OutputMode='. $outputMode .'&' .'mls='.$_SESSION['mls'] .'&' .$queryString_str . '&Limit=' . $limit . '&Source=' . $this->hc_source_tag . '&SiteToken=' . urlencode($this->hc_get_site_token()) . '&LeadToken=' . urlencode($this->hc_get_lead_token());
 		
 		
 		/*

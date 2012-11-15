@@ -214,7 +214,7 @@ function homecards_shortcode( $atts ) {
 		//$myArray['mlsProvider'] = $_SESSION['mls']; 
 		//$_SESSION['mls'] = ""; 
 		
-		if(!empty($myArray['mls'])) { $_SESSION['mls'] = $myArray['mls']; }
+		if(isset($myArray['mls'])) { $_SESSION['mls'] = $myArray['mls']; } else { $_SESSION['mls'] = ""; }
 		
 		//if ( empty($myArray['mlsProvider']) ) { $myArray['mlsProvider'] = ''; }
 		if ( empty($myArray['Area']) ) { $myArray['Area'] = ''; }
@@ -384,7 +384,7 @@ function homecards_shortcode( $atts ) {
 		$html .= "		<div class='hc-results-paging'>\n</div>\n";
 		/* HERE'S WHERE THE FORM GET'S PUT TOGETHER & INCLUDED */
 		$hc_html_form = hc_renderSearchForm($atts['col1'], $atts['col2'], $atts['col3']);
-		$html .= '<label for="mls">Select Desired MLS Provider: </label><select name="mls" id="mls" size="1"><option value="">Denver/Central-Colorado</option><option value="IRE">Boulder</option></select>';
+		$html .= '<label for="mls">Select Desired MLS Provider: </label><select name="mls" id="mls" size="1"><option value="">Denver/Central-Colorado</option><option value="IRE">Boulder</option><option value="PPA">Pike\'s Peak</option></select>';
 		$html .= $hc_html_form;
 		// Show button after form
 		$html .= "			<button class=\"hc-btn-search\" name='hc_search_button' value='search'>Search Now</button>\n";
