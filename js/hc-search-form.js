@@ -35,6 +35,10 @@ function GetMyHash(findKey, defaultVal) {
 }
 
 jQuery(document).ready(function($) {
+	$('#updateMLS').bind('click', function() { 
+		hc_mls_selection({mls: jQuery('#mls').val(), callback: function() { self.location.reload(); } }); 
+	}); 
+
 	// OBSOLETE/TEST: var pageLoadCount_Tracker = $('#hc_pageLoadCount').val();
 	// make sure criteria is blank on load
 	window.criteria = {};
@@ -291,7 +295,7 @@ function hc_submitAjaxSearch($frm, searchMode, callbackOverride) {
 	// If we have a 'query' specified, we need to parse it out and merge it into the myCriteria
 	if ( jQuery("input[name='query']").length == 1 && jQuery("input[name='query']").val().length > 1 ) {
 		//console.log(jQuery("input[name='query']").val());
-		myCriteria = jQuery.extend([{name:'hc_search', value: 'true'}], myCriteria, makeNameValueObjectArray(jQuery("input[name='query']").val()));
+		myCriteria = jQuery.extend([{name:'hc_search', value: 'true'}], makeNameValueObjectArray(jQuery("input[name='query']").val()), myCriteria);
 		// myCriteria is now an object with a bunch of name=value Objects... NOT AN ARRAY, let's enumerate and build an ARRAY of name=value objects again!
 		var tempCriteria = [];
 		for (var nvPair in myCriteria ) {

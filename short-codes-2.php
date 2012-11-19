@@ -132,8 +132,8 @@ switch ($atts['mode']) {
 	case 'sc':
 	case 'cannedsearch':
 		echo '				<div class="clear"></div>' . "\n";
-		echo '				<div class="shortcode-result"><small>click the button when you have completed your search criteria</small></div>' . "\n";
-		echo '				<label for="mls">MLS Provider: </label><select id="mls" name="mls"><option value="DEN">Denver</option><option value="IRE">IRE</option><option value="PPA">Pike\'s Peak</option></select><br />';
+		echo '				<div class="shortcode-result">click the button when you have completed your search criteria</div>' . "\n";
+		echo getMLSSelectHTML(); 
 		echo '				<input type="button" value="Make Shortcode" class="clear headSearchSubmit search-shortcode-btn button-primary" />' . "\n";
 		echo '				<input type="button" value="Make Page w/ Shortcode" class="clear headSearchSubmit create-page-shortcode-btn" />' . "\n";
 		echo '				<input type="submit" value="Set Search Defaults" class="clear headSearchSubmit hc-set-search-defaults" />' . "\n";

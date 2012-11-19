@@ -500,6 +500,33 @@ function hc_log(eventType, subType, listingID, callback) {
 	return false;
 }
 
+/**
+ * Examples:
+ * hc_mls_selection( {mls: 'IRE'} )     	<- sets mls equal to "IRE"
+ * hc_mls_selection( {mls: ''} )    		<- sets mls equal to Primary MLS stored in options table
+ * hc_mls_selection( )    					<- gets available MLS
+*/
+function hc_mls_selection(opts) {
+	var postData = {action: 'hc_mls_selection', source: 'WP' };
+	var mode = "";
+	if (typeof(opts.mls) == 'undefined') {
+		mode = 'available'; 
+		jQuery.extend(postData, {mode: mode}); 
+	} else { 
+		mode = "set";
+		jQuery.extend(postData, {mode: mode, mls: opts.mls}); 
+	}
+	jQuery.ajax({ type: 'POST', url: ajaxurl, data: postData,
+	  success: function(data) {
+			console.log('success'); 
+			if (typeof opts != 'undefined' && typeof opts.callback == 'function' ) { opts.callback(data); }
+		},
+	  dataType: 'json'
+	});
+	return false;
+}
+
+
 function hc_viewListing(listingId, opts) {
 	hc_google_trackevent('PreviewedListing', listingId);
 	var postData = {action: 'hc_add_viewed_listing', listingId: listingId, LeadToken: (HCProxy.leadJSON != null && typeof HCProxy.leadJSON.Token != 'undefined' ? HCProxy.leadJSON.Token : ""), source: 'WP' };

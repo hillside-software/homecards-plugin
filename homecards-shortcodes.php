@@ -22,6 +22,22 @@ function testFilters(){
 }
 
 
+// example output: 
+// '<label for="mls">Select Desired MLS Provider: </label><select name="mls" id="mls" size="1"><option value="">Denver/Central-Colorado</option><option value="IRE">Boulder</option></select>';
+
+function getMLSSelectHTML() {
+	$availableMLS = json_decode(get_option('hc_available_mls',"{}")); 
+	$html = "<select name='mls' id='hc_mls' class='hc_mls'>"; 
+	
+	foreach($availableMLS as $key => $value) {
+		if(strlen($key) > 3) { $key = ""; }
+		$selected = ($_SESSION['mls'] == $key ? " selected" : ""); 
+		$html .= "<option value='".$key."' $selected>".$value."</option>"; 
+	}	
+	$html .= "</select>";
+	$html .= "<input type='button' id='updateMLS' value='Update MLS' />";  
+	return $html; 
+}
 
 function hc_get_search_results() {
 	echo homecards_shortcode(array( 'page' => 'search', 'showmap' => 'false' ));
@@ -48,6 +64,7 @@ function homecards_shortcode( $atts ) {
 	hc_add_url_rewrite();
 	if (function_exists('shortcode_atts') ) {
 		$atts = shortcode_atts( array(
+			'mls' => (isset($_SESSION['mls']) ? $_SESSION['mls'] : ""), 
 			'page' => 'search',
 			'query' => "", // Set this to override the POST values!
 			'col1' => '',
@@ -149,6 +166,7 @@ function homecards_shortcode( $atts ) {
 		} else {
 			$leadJSON = array();
 		}
+		if (isset($_SESSION['mls'])) {		$leadJSON['Board'] = $_SESSION['mls'];	}
 	}
 	
 	
@@ -214,8 +232,21 @@ function homecards_shortcode( $atts ) {
 		//$myArray['mlsProvider'] = $_SESSION['mls']; 
 		//$_SESSION['mls'] = ""; 
 		
-		if(isset($myArray['mls'])) { $_SESSION['mls'] = $myArray['mls']; } else { $_SESSION['mls'] = ""; }
+		if(isset($myArray['mls']) && strlen($myArray['mls']) >= 3) {
+			$_SESSION['mls'] = $myArray['mls']; 
+		} else {
+			$_SESSION['mls'] = ""; 
+		}	
 		
+		$html .= "myArray=".$myArray['mls']."<br />\r\n"; 
+		$html .= "mls.post=".$_POST['mls']."<br />\r\n";
+		$html .= "mls.get=".$_GET['mls']."<br />\r\n";
+		$html .= "mls.session=".$_SESSION['mls']."<br />\r\n"; 
+		
+	
+	
+		
+	
 		//if ( empty($myArray['mlsProvider']) ) { $myArray['mlsProvider'] = ''; }
 		if ( empty($myArray['Area']) ) { $myArray['Area'] = ''; }
 		if (is_array($myArray['Area'])) {// This is to handle old functionality - Dan: 2012-02-22
@@ -259,6 +290,7 @@ function homecards_shortcode( $atts ) {
 			$html .= "		<input type='hidden' name='polygoncsv' class='polygoncsv' id='polygoncsv' value='" . $polygonCsv . "' />\n";
 			$html .= "		<input type='hidden' name='PageNum' id='hc_pageNum' value='1' />\n";
 			$html .= "		<input type='hidden' name='hc_search' id='hc_search' value='true' />\n";
+		    $html .= "   	<input type='hidden' name='mls' class='mls' id='mls' value='".$_SESSION['mls']."' />\n"; 
 			if ( strlen($atts['query']) > 1 ) {
 				$q = $atts['query'];
 				if ( strpos( $q, 'wid' ) == 0 ) { $q = substr($q, 10); }
@@ -373,6 +405,7 @@ function homecards_shortcode( $atts ) {
 		$html .= "			<input type='hidden' name='PageNum' id='hc_pageNum' value='1' />\n";
 		$html .= "			<input type='hidden' name='hc_search' id='hc_search' value='true' />\n";
 		$html .= "			<input type='hidden' name='polygoncsv' class='polygoncsv' id='polygoncsv' value='" . $polygonCsv . "' />\n";
+		// $html .= "   		<input type='hidden' name='mls' class='mls' id='mls' value='".$_SESSION['mls']."' />\n"; 
 		if ( isset($atts['col1']) ) { $html .= "			<input type='hidden' name='col1' value='" . $atts['col1'] . "' />\n			<input type='hidden' name='col2' value='" . $atts['col2'] . "' />\n			<input type='hidden' name='col3' value='" . $atts['col3'] . "' />\n"; }
 		if ( $atts['showmap'] == 'true' ) {
 			$html .= "		<div class=\"hc-map-resizer\" style=\"margin: 0px; padding: 0px;\">\n";
@@ -384,7 +417,7 @@ function homecards_shortcode( $atts ) {
 		$html .= "		<div class='hc-results-paging'>\n</div>\n";
 		/* HERE'S WHERE THE FORM GET'S PUT TOGETHER & INCLUDED */
 		$hc_html_form = hc_renderSearchForm($atts['col1'], $atts['col2'], $atts['col3']);
-		$html .= '<label for="mls">Select Desired MLS Provider: </label><select name="mls" id="mls" size="1"><option value="">Denver/Central-Colorado</option><option value="IRE">Boulder</option><option value="PPA">Pike\'s Peak</option></select>';
+		$html .= getMLSSelectHTML(); // '<label for="mls">Select Desired MLS Provider: </label><select name="mls" id="mls" size="1"><option value="">Denver/Central-Colorado</option><option value="IRE">Boulder</option></select>';
 		$html .= $hc_html_form;
 		// Show button after form
 		$html .= "			<button class=\"hc-btn-search\" name='hc_search_button' value='search'>Search Now</button>\n";
@@ -463,6 +496,7 @@ function hc_buildLoginForm($returnString = false) {
 		if (stripos($strJson, 'FirstName') > 0) {
 			$leadJSON = json_decode($strJson, true);
 			if (isset($leadJSON['FirstName'])) { $fName = $leadJSON['FirstName']; }
+			if (isset($_SESSION['mls'])) {		$leadJSON['Board'] = $_SESSION['mls'];	}
 		}
 		$html .= "\r\n<div class='hc_login_msg hc_user_msg'>Welcome back " .  htmlspecialchars($fName) . "</div>";
 		$html .= "<a class='hc_logout' onclick='hc_leadLogout()'>Click here to logout</a>";
@@ -501,6 +535,8 @@ function hc_buildLeadSignupForm($returnString = false) {
 		if (stripos($strHTML, 'FirstName') > 0) {
 			$leadJSON = json_decode($strHTML, true);
 			if (isset($leadJSON['FirstName'])) { $fName = $leadJSON['FirstName']; }
+			if (isset($_SESSION['mls'])) {		$leadJSON['Board'] = $_SESSION['mls'];	}
+			
 		}
 		$strHTML = "<div class='hc_login_msg hc_user_msg' style='font-weight: 700;'>Welcome back " .  htmlspecialchars($fName) . "</div>";
 		$strHTML .= "<a class='hc_logout' onclick='hc_leadLogout()' style='text-decoration: underline; font-size: small; margin: 4px; cursor: pointer;'>Click here to logout</a>";

@@ -210,12 +210,43 @@ add_action( 'wp_ajax_hc_ajax_set_default_content', 'hc_ajax_set_default_content'
 add_action( 'wp_ajax_hc_add_viewed_listing', 'hc_add_viewed_listing' );
 add_action( 'wp_ajax_nopriv_hc_add_viewed_listing', 'hc_add_viewed_listing' );
 
+add_action( 'wp_ajax_hc_mls_selection', 'hc_mls_selection' );
+add_action( 'wp_ajax_nopriv_hc_mls_selection', 'hc_mls_selection' );
+
 add_action( 'wp_ajax_hc_save_default_criteria', 'hc_save_default_criteria' );
 
 add_action( 'wp_ajax_homecardsevent', 'hc_log_homecardsevent' );
 
 
-
+function hc_mls_selection() {
+	/*
+		$json =  json_encode(array(""=>"Denver & Central CO","IRE"=>"Boulder")); 
+		add_option("hc_available_mls", $json); 
+		echo $json . "\r\n";
+	*/
+	$action = strtolower($_REQUEST['mode']); 
+	if($action == "available") {
+		$json = get_option("hc_available_mls", ""); 
+		if(strlen($json) < 1) {
+			// TODO: Add API CALL 
+			$json =  json_encode(array(
+				"selected"=> $_SESSION['mls'],
+				"available" => array(""=>"Denver & Central CO","IRE"=>"Boulder")));
+			update_option("hc_available_mls", $json); 
+		}
+		echo $json . "\r\n";
+	} else if ($action == "set") {
+		$newMLS = $_REQUEST['mls'];
+		if(strlen($newMLS) < 5 && strlen($newMLS) >= 0) {
+			$_SESSION['mls'] = $newMLS;
+			$json =  json_encode(array(
+				"selected"=> $_SESSION['mls'],
+				"available" => array(""=>"Denver & Central CO","IRE"=>"Boulder")));
+			echo $json . "\r\n";
+		}
+	}
+	exit();
+}
 
 /*
 Tracks activity using the HC logging and reporting system!
@@ -344,22 +375,20 @@ function hc_get_search_count() {
 }
 
 /*
-function hc_hideDisclaimer() { ?>
-			<style type="text/css">
-				#hcLegalToggle {font-size: 1.1em; font-weight: 700; display: block; clear: both;}
-			</style>
-			<script type="text/javascript">
-				jQuery(document).ready( function($) {
-					$('.hc-legal:eq(0)')
-						.before('<a href="javascript:jQuery(\'.hc-legal\').toggle()" id=\'hcLegalToggle\'>Click Here For MLS Disclaimer</a>')
-						.hide();
-				});
-			</script>
-			
-			
-			
-			
-		<?php
+function hc_hideDisclaimer() {
+?>
+<style type="text/css">
+#hcLegalToggle {font-size: 1.1em; font-weight: 700; display: block; clear: both;}
+</style>
+<script type="text/javascript">
+jQuery(document).ready( function($) {
+$('.hc-legal:eq(0)')
+.before('<a href="javascript:jQuery(\'.hc-legal\').toggle()" id=\'hcLegalToggle\'>Click Here For MLS Disclaimer</a>')
+.hide();
+});
+</script>
+
+<?php
 } */
 
 
@@ -627,6 +656,9 @@ function hc_setupAjax() {
 	} else {
 		$leadJSON = "{}";
 	}
+	
+	if (isset($_SESSION['mls'])) {		$leadJSON['Board'] = $_SESSION['mls'];	}
+	
 	// embed the javascript file that makes the AJAX request
 	wp_localize_script( 'hc-ajax', 'HCProxy', array(
 			'leadJSON' => $leadJSON,
@@ -843,58 +875,57 @@ function hc_urlencode($string) {
 
 function hc_widget_css() { ?>
 	<script type="text/javascript">
-	jQuery(document).ready( function($) {
-		jQuery('#available-widgets .widget').each(function(index, obj) {
-		var ctx = jQuery(obj);
-	 	var title = null;
-	 	var top = ctx;
-	 	if (ctx.find('h4').text().indexOf("HomeCards") > -1) { 
-	 		title = ctx.find('.widget-title');
-	 		title.addClass('hc-widget-box');
-	 		title.find('h4').css({'color' : '#FFF', textShadow : '1px 1px 0 #034769'});
-	 		top.css({border : '1px solid #e2e2e2', background : '#f4f4f4'});
-	 		//title.parent().addClass('hc-widget-box-top');
-	 		
-	 	
-	 	}
-	})
-	});
+		jQuery(document).ready(function($) {
+			jQuery('#available-widgets .widget').each(function(index, obj) {
+				var ctx = jQuery(obj);
+				var title = null;
+				var top = ctx;
+				if (ctx.find('h4').text().indexOf("HomeCards") > -1) {
+					title = ctx.find('.widget-title');
+					title.addClass('hc-widget-box');
+					title.find('h4').css({
+						'color' : '#FFF',
+						textShadow : '1px 1px 0 #034769'
+					});
+					top.css({
+						border : '1px solid #e2e2e2',
+						background : '#f4f4f4'
+					});
+					//title.parent().addClass('hc-widget-box-top');
+
+				}
+			})
+		});
 	</script>
 <?php
 }
 
 add_action( 'admin_head', 'hc_widget_css' );
 
-
-
 function hc_renderSignupHtml() {
-	if (get_option('hc_signup_html', '') != '') {
-		return get_option('hc_signup_html', '');
-	} else {
-		return "	<h2 class=\"hc-signup-title\">New to the site? Create a New Account	</h2>
-	<div class=\"hc-signup-info\">
-		<span>In order to save this property you must first create an account. Once you have an account you get much more than simply a place to track your favorite properties, you also get:</span>
-		<ul class=\"hc-signup-info\">
-			<li><span style=\"font-family: WebSymbolsRegular; color: #333;\">.</span> Your own Password Protected Personal Buyer Website</li>
-			<li><span style=\"font-family: WebSymbolsRegular; color: #333;\">.</span> Email Notifications for new listings that come on the Market</li>
-			<li><span style=\"font-family: WebSymbolsRegular; color: #333;\">.</span> Access all Virtual tours</li>
-			<li><span style=\"font-family: WebSymbolsRegular; color: #333;\">.</span> And more...</li>
-		</ul>
-		<strong>This is a completely free service so sign up and get started today!</strong>
-	</div>";
-	}
-}	
-	
-	
+if (get_option('hc_signup_html', '') != '') {
+return get_option('hc_signup_html', '');
+} else {
+return "	<h2 class=\"hc-signup-title\">New to the site? Create a New Account	</h2>
+<div class=\"hc-signup-info\">
+<span>In order to save this property you must first create an account. Once you have an account you get much more than simply a place to track your favorite properties, you also get:</span>
+<ul class=\"hc-signup-info\">
+<li><span style=\"font-family: WebSymbolsRegular; color: #333;\">.</span> Your own Password Protected Personal Buyer Website</li>
+<li><span style=\"font-family: WebSymbolsRegular; color: #333;\">.</span> Email Notifications for new listings that come on the Market</li>
+<li><span style=\"font-family: WebSymbolsRegular; color: #333;\">.</span> Access all Virtual tours</li>
+<li><span style=\"font-family: WebSymbolsRegular; color: #333;\">.</span> And more...</li>
+</ul>
+<strong>This is a completely free service so sign up and get started today!</strong>
+</div>";
+}
+}
 
 function hc_get_user_roles() {
-	global $current_user;
-	if ( isset($current_user) && isset($current_user->roles) ) {
-		$user_roles = $current_user->roles;
-		return implode(',', $current_user->roles);
-	} else {
-		return 'anonymous';
-	}
+global $current_user;
+if ( isset($current_user) && isset($current_user->roles) ) {
+$user_roles = $current_user->roles;
+return implode(',', $current_user->roles);
+} else {
+return 'anonymous';
 }
-	
-	
+}
