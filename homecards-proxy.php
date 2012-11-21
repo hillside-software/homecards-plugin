@@ -126,7 +126,6 @@ function hc_ajax_lead_login() {
 	if (isset($_SERVER['HTTP_X_REQUESTED_WITH'])) {
 		header( "Content-Type: text/javascript" );
 		echo json_encode($leadJSON);
-		exit();
 	}
 	return $leadJSON;
 }
@@ -191,7 +190,7 @@ class HomeCardsProxy {
  	var $hc_source_tag = 'WP';
  	
  	//var $debugEnabled = false;
- 	var $debugEnabled = true;
+ 	var $debugEnabled = false;
  	
  	var $token = '';
 	
@@ -813,6 +812,7 @@ class HomeCardsProxy {
 	function getSavedListingsJSON($cID) {
 		$dbgHtml = "";
 		$url = 'http://' . $this->hc_domain_name . $this->debugPath . '/HCProxy.aspx?wID=' . $this->webid . '&mls='.$_SESSION['mls'].'&Action=GetSavedListingsJSON' . '&Roles=' . urlencode(hc_get_user_roles()) . '&SiteToken=' . urlencode($this->hc_get_site_token()) . '&LeadToken=' . urlencode($this->hc_get_lead_token());
+		
 		if (isset($cID)) { $url .= "&cID=" . $cID;}
 		//if ($this->debugEnabled) {$dbgHtml .= "<!-- URL: $url -->\n";}
 		$getReq = wp_remote_get($url, array( 'headers' =>$this->hc_getNewHeaders() ) );
