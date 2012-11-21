@@ -37,6 +37,10 @@ define('PLUGIN_ERROR_HTML', "<div class='hc-error'><strong>We're Sorry!</strong>
 
 
 if (!isset($_SESSION)) { @session_start(); }
+// Init required session value
+if (empty($_SESSION['mls'])) { $_SESSION['mls'] = ''; }
+
+
 @ob_start(); //output buffering to buffer any headers
 
 @header('X-UA-Compatible: IE=Edge');
@@ -654,7 +658,7 @@ function hc_setupAjax() {
 	} else if (isset($_SESSION['HC_LeadJSON'])) {
 		$leadJSON = json_decode($_SESSION['HC_LeadJSON'], true);
 	} else {
-		$leadJSON = "{}";
+		$leadJSON = array();
 	}
 	
 	if (isset($_SESSION['mls'])) {		$leadJSON['Board'] = $_SESSION['mls'];	}

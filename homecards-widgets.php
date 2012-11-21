@@ -228,8 +228,13 @@ class HC_Products_Badge_Widget extends WP_Widget {
 			<p id="widget_app_badge_vip">VIP Access Code:</p>
 			<h4 style="font-size: <?php echo $fontSize; ?>px;"><?php echo $agentData->MobileAccessCode; ?></h4>
 			<p>Download My App for:</p>
-			<?php if ($iphone == "1") { echo '<a href="' . $agentData->Products->mobile->iPhoneLink . '" id="widget_iphone" target="_blank">iPhone</a>'; } ?>
-			<?php if ($android == "1") { echo '<a href="' . $agentData->Products->mobile->androidLink . '" id="widget_android" target="_blank">Android</a>'; } ?>
+			
+			<?php 
+			if (isset($agentData) && isset($agentData->Products) && isset($agentData->Products->mobile)) {
+				if ($iphone == "1") { echo '<a href="' . $agentData->Products->mobile->iPhoneLink . '" id="widget_iphone" target="_blank">iPhone</a>'; } 
+				if ($android == "1") { echo '<a href="' . $agentData->Products->mobile->androidLink . '" id="widget_android" target="_blank">Android</a>'; } 
+			}
+			?>
 		</div>
 
 	<?php 	
