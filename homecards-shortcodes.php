@@ -238,10 +238,10 @@ function homecards_shortcode( $atts ) {
 			$_SESSION['mls'] = ""; 
 		}	
 		
-		$html .= "myArray=".$myArray['mls']."<br />\r\n"; 
+		/*$html .= "myArray=".$myArray['mls']."<br />\r\n"; 
 		$html .= "mls.post=".$_POST['mls']."<br />\r\n";
 		$html .= "mls.get=".$_GET['mls']."<br />\r\n";
-		$html .= "mls.session=".$_SESSION['mls']."<br />\r\n"; 
+		$html .= "mls.session=".$_SESSION['mls']."<br />\r\n"; */
 		
 	
 	
