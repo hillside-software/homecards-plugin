@@ -176,7 +176,7 @@ function hc_ajax_signup() {
 
 class HomeCardsProxy {
 	var $cURL;
-	var $version = '1.6.0';
+	var $version = '1.6.2';
  	var $debugPath = '';
  	
  	var $enableCaching = true;

@@ -31,6 +31,7 @@ function getMLSSelectHTML() {
 	
 	foreach($availableMLS as $key => $value) {
 		if(strlen($key) > 3) { $key = ""; }
+		// TO DO JON <- this is not working ....echo "_SESSION['mls'] = ".$_SESSION['mls']." and key=".$key." and value=".$value; 
 		$selected = ($_SESSION['mls'] == $key ? " selected" : ""); 
 		$html .= "<option value='".$key."' $selected>".$value."</option>"; 
 	}	

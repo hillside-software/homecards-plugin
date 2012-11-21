@@ -82,3 +82,6 @@ div.hc-nav-footer-cont { width: 100%; background: url(images/nav-foot-bg.png) re
 
 /*.HC_Prop_Photos {margin-top: -35px;}*/
 .hc-prop-photo { width: 350px; margin: 16px 0px 6px 16px;}
+
+.hc-map-box img { max-width: none; } 
+.hc-map-box label { width: auto; display: inline; }
