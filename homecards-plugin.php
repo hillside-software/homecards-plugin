@@ -15,8 +15,8 @@ ini_set('display_errors',1);
 error_reporting(E_ALL);
 //ini_set('display_errors',1);
 //error_reporting(E_ALL);
-//error_reporting(E_COMPILE_ERROR|E_RECOVERABLE_ERROR|E_ERROR|E_CORE_ERROR);
 */
+error_reporting(E_COMPILE_ERROR|E_RECOVERABLE_ERROR|E_ERROR|E_CORE_ERROR);
 
 //ini_set('display_errors',1);
 //error_reporting(E_ALL);
@@ -240,7 +240,7 @@ function hc_mls_selection() {
 		}
 		echo $json . "\r\n";
 	} else if ($action == "set") {
-		$newMLS = $_REQUEST['mls'];
+		$newMLS = $_REQUEST['hc_mls'];
 		if(strlen($newMLS) < 5 && strlen($newMLS) >= 0) {
 			$_SESSION['mls'] = $newMLS;
 			$json =  json_encode(array(

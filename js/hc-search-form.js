@@ -36,7 +36,7 @@ function GetMyHash(findKey, defaultVal) {
 
 jQuery(document).ready(function($) {
 	$('#updateMLS').bind('click', function() { 
-		hc_mls_selection({mls: jQuery('#mls').val(), callback: function() { self.location.reload(); } }); 
+		hc_mls_selection({mls: jQuery('#hc_mls').val(), callback: function() { self.location.reload(); } }); 
 	}); 
 
 	// OBSOLETE/TEST: var pageLoadCount_Tracker = $('#hc_pageLoadCount').val();
