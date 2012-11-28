@@ -40,3 +40,51 @@ width:155px
 	background: url(images/prop-iconsprite.png) no-repeat;
 	background-position: -270px -91px;	
 }
+
+
+
+
+
+/* From prop-details-wordpress.css */
+.pd_wrap_all{display:block;margin:20px;padding:0}
+.pd_wrapper{border:1px solid #cfcfcf;border-collapse:collapse;box-shadow:0 1px 3px #d9d9d9;font-family:Arial, Helvetica, sans-serif;margin:0 0 20px;padding:0; width: 98%;}
+.pd_wrapper thead{border-left:1px solid #cfcfcf;border-right:1px solid #cfcfcf;border-top:1px solid #cfcfcf;clear:both;color:#6c6b6d;margin:0;padding:0;text-shadow:0 1px 0 #bebebe}
+.pd_wrapper thead tr th {background:url(images/toolbar-bg.png) top left repeat-x}
+.pd_wrapper thead tr th h2 {height: 18px !important;}
+.pd_wrapper thead tr th a { text-decoration: none; border-bottom: 1px dashed #333; color: #333;}
+.pd_wrapper thead tr th span {  }
+.pd_wrapper th h2{font-size:18px;font-weight:700;line-height:14px !important;margin:10px 6px;padding:0;text-align:left}
+.pd_wrapper thead span{float:right;font-size:14px;font-weight:700;margin:0;padding:0}
+.pd_wrapper tbody{background:url(images/info-bg.png) top left repeat-x;border-left:1px solid #cfcfcf;margin:0;min-height:178px;padding:0}
+.pd_wrapper tbody tr td{border-right:1px solid #cfcfcf}
+.pd_wrapper tbody tr,.pd_wrapper tbody tr td{/*background:transparent;*/line-height:1;margin:0;padding:0}
+.pd_body_wrap{line-height:1;margin:0;padding:0}
+.pd_body_wrap li{float:left;line-height:1;list-style-type:none;margin:0;padding:0}
+.pd_body_img{display:block;margin:0 auto;width:35%}
+.pd_body_img_bx{background:#eee;border:1px solid #ccc;display:block;height:110px;margin:1.3em auto 10px;width:155px}
+.hc_img {width: 155px; height:110px;}
+.pd_presented{display:block;font-size:10px;font-weight:700;margin:0 20px;text-align:center}
+.pd_body_content{width:65%}
+.pd_body_content h3{border-bottom:1px solid #d7d5d3;font-size:18px;font-weight:700;margin:1em 5px 5px;text-shadow:1px 1px 0 #fff}
+.pd_body_content h3 span{float:right;font-size:14px;font-weight:400}
+.pd_info{font-size:15px;font-weight:700;line-height:1.3;margin:0 5px}
+.pd_desc{font-size:13px;margin:0 5px!important;padding:0;text-align:justify}
+.pd_wrapper tfoot{border-bottom:1px solid #cfcfcf;border-left:1px solid #cfcfcf;border-right:1px solid #cfcfcf;height:45px;margin:0;padding:0}
+.pd_icon_wrapper{clear:both;margin:0;padding:0}
+.pd_icon_wrapper li{background:url(images/icon-bg-static.png) top left repeat-x;border-right:1px solid #cfcfcf;float:left;list-style-type:none;margin:0;padding:0;width:59px}
+.pd_icon_wrapper_hover{background:url(images/icon-bg-active.png) top left repeat-x!important;width:59px}
+.pd_icon_wrap{display:block;height:45px;line-height:55px;margin:0 auto;padding:0;width:45px}
+.pd_idx_wrap{display:block;height:45px;line-height:55px;margin:0 auto;padding:0;text-shadow:0 1px 0 #fff;width:100px}
+.pd_idx_wrap span{font-size:11px;line-height:10px;position:relative;top:8px}
+.pd_icon_home{background:url(images/prop-iconsprite.png) no-repeat;background-position:0 0}
+.pd_icon_email{background:url(images/prop-iconsprite.png) no-repeat;background-position:-45px 0}
+.pd_icon_map{background:url(images/prop-iconsprite.png) no-repeat;background-position:-90px 0}
+.pd_icon_save{background:url(images/prop-iconsprite.png) no-repeat;background-position:-135px 0}
+.pd_icon_share{background:url(images/prop-iconsprite.png) no-repeat;background-position:-180px 0}
+.pd_icon_apply{background:url(images/prop-iconsprite.png) no-repeat;background-position:-225px 0}
+.pd_icon_idx{background:url(images/idx-icon.png) no-repeat;background-position:25px 5px}
+.pd_icon_cog{background:url(images/prop-iconsprite.png) no-repeat;background-position:-270px 0}
+#content tr th, #content thead th { padding: 0!important;}
+#content tr td { padding: 0!important;}
+.hc_ln {color: white!important; text-shadow: 1px 1px 1px #888;}
+

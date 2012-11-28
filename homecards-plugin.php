@@ -713,6 +713,7 @@ function hc_content_filter($content = '', $listingId = '') {
 		
 		$hc_proxy = new HomeCardsProxy();
 		$strHTML = $hc_proxy->getFullPropertyDetails($listingId);
+		
 		$strHTML .= "\n<script type='text/javascript'>\n";
 		$strHTML .= "	jQuery(document).ready(function() {\n";
 		$strHTML .= "		jQuery('.tb-2 a').attr('href', 'http://maps.google.com/maps?oi=map&q=' + escape(jQuery('.hdr-addr h2').text()) + '&output=embed');\n";
@@ -728,11 +729,11 @@ function hc_content_filter($content = '', $listingId = '') {
 		//var picBox = $(".content-child-cont"); $('.HC_Prop_Photos').after("<div style=\"width: " + picBox.width() + "px;\"><span class='hc_iconic hc_arrow_left'></span><span style='float:right;' class='hc_iconic hc_arrow_right'></span></div>")
 		$strHTML .= "	});\n";
 		$strHTML .= "</script>\n";
-
+		return $strHTML; 
 		/*
 		 * One suggestion I have for this function is:
 		 * 
-		 * DHigginbotham
+		 * DHigginbotham 
 		 * 
 		 * Usage:
 		 * 

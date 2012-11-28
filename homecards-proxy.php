@@ -182,8 +182,8 @@ class HomeCardsProxy {
  	
  	/** SET YOUR HOMECARDS ACCOUNT'S VARIABLES - (OR YOU MUST UPDATE IN CODE) **/
  	//var $hc_domain_name = 'www.myhomecards.com';//'dev01.den.hillside-tech.com'; /* example: www.joshsellsdenver.com */
- 	var $login_domain_name = 'dev01.den.hillside-tech.com'; // "www.myhomecards.com"; 
- 	var $hc_domain_name = 'dev01.den.hillside-tech.com'; // "www.myhomecards.com";   example: www.joshsellsdenver.com 
+ 	var $login_domain_name = "www.myhomecards.com"; //  'dev01.den.hillside-tech.com'; 
+ 	var $hc_domain_name = 'www.myhomecards.com'; //dev01.den.hillside-tech.com'; // "www.myhomecards.com";   example: www.joshsellsdenver.com 
  	var $webid = -1; /* example: 12345 ... Note: This is the "wID" at the end of almost all links in your site */
  	
  	/* Optional Traffic Source Modifier (used for special tracking of traffic using this HTTP Webservice Proxy) */
