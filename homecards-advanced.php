@@ -153,7 +153,7 @@ function add_gallery_scripts_styles_wp_head() {
 		wp_enqueue_script('jquery');
 		wp_enqueue_script('yetii-min', plugin_dir_url( __FILE__ ) . 'js/' . 'yetii-min.js', array('jquery'));
 		wp_enqueue_script('pikachoose', plugin_dir_url( __FILE__ ) . 'js/' . 'jquery.pikachoose.full.js', array('jquery'));
-		wp_enqueue_style('components', plugin_dir_url( __FILE__ ) . 'css/'. 'components.css', false, false, 'screen');
+		//wp_enqueue_style('components', plugin_dir_url( __FILE__ ) . 'css/'. 'components.css', false, false, 'screen');
 	}
 ?>
 

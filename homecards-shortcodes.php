@@ -86,7 +86,7 @@ function homecards_shortcode( $atts ) {
 			'mapwidth' => 'auto',
 			'mapheight' => '350px',
 			//'mlsProvider' => '',
-			'mapresizerwidth' => '750px',
+			'mapresizerwidth' => '100%',// Used to be 750px, 2013-03 changed by Dan
 			'mapresizerheight' => '450px'
 		), $atts );
 	}
@@ -189,7 +189,7 @@ function homecards_shortcode( $atts ) {
 
 	if ( $atts['page'] == "search" || $atts['page'] == "runsearch" || $atts['page'] == "dosearch" || $atts['page'] == "runsearch") {
 		//hc_setupAjax();
-		wp_enqueue_style( 'components', plugin_dir_url( __FILE__ ) . 'css/components.css' );	
+		//wp_enqueue_style( 'components', plugin_dir_url( __FILE__ ) . 'css/components.css' );	
 		wp_enqueue_style( 'hc-search-results-theme', plugin_dir_url( __FILE__ ) . 'css/pd_style_blue.css' );	
 
 		if ( isset($_REQUEST['PageNum']) && intval($_REQUEST['PageNum']) >= 1 ) {
@@ -275,7 +275,7 @@ function homecards_shortcode( $atts ) {
 		}*/
 		// embed the css layout file
 		if ( !IS_AJAX ) {
-			wp_enqueue_style( 'hc-list-style', plugin_dir_url( __FILE__ ) . 'css/hc-list-style1.css' ); 
+			wp_enqueue_style( 'important-css', plugin_dir_url( __FILE__ ) . 'css/important-css-overrides.css' ); 
 			// Make sure our settings get rendered  out right above the map ... this should change
 			if ( empty($_SESSION['lastSearchJSON']) ) { $_SESSION['lastSearchJSON'] = "{}";}
 			$html .= "<script type='text/javascript'>\n";
@@ -310,8 +310,8 @@ function homecards_shortcode( $atts ) {
 		}
 
 		if ( !IS_AJAX ) {
-			wp_enqueue_style( 'hc-list-style', plugin_dir_url( __FILE__ ) . 'css/hc-list-style1.css' );	
-			wp_enqueue_style( 'components', plugin_dir_url( __FILE__ ) . 'css/components.css' );
+			wp_enqueue_style( 'important-css', plugin_dir_url( __FILE__ ) . 'css/important-css-overrides.css' );	
+			//wp_enqueue_style( 'components', plugin_dir_url( __FILE__ ) . 'css/components.css' );
 			//$html .= hc_addScript_search();
 		}
 
@@ -380,8 +380,8 @@ function homecards_shortcode( $atts ) {
 		if (is_admin()) {
 			$html .= "\n<!--	**************** SHORTCODE REFERENCE ******************\n	Example Shortcode For Search Form: \n[homecards page=\"searchform\" col1=\"" . $atts['col1'] . "\" col2=\"" . $atts['col2'] . "\" col3=\"" . $atts['col3'] . "\"]\n-->\n";
 		}
-		wp_enqueue_style( 'hc-list-style', plugin_dir_url( __FILE__ ) . 'css/hc-list-style1.css' );	
-		wp_enqueue_style( 'components', plugin_dir_url( __FILE__ ) . 'css/components.css' );
+		wp_enqueue_style( 'important-css', plugin_dir_url( __FILE__ ) . 'css/important-css-overrides.css' );	
+		//wp_enqueue_style( 'components', plugin_dir_url( __FILE__ ) . 'css/components.css' );
 	
 		// Make sure our settings get rendered  out right above the map ... this should change
 		if ( empty($_SESSION['lastSearchJSON']) ) { $_SESSION['lastSearchJSON'] = "{}";}
@@ -446,8 +446,8 @@ function homecards_shortcode( $atts ) {
 		/***** CITY DETAILS PAGE HANDLER CODE *****/
 		/***** CITY DETAILS PAGE HANDLER CODE *****/
 		$html .= $hc_proxy->getCityPage($atts['city'], $atts['pricerange'], $atts['bedsrange'], $atts['bathsrange'], $atts['subareas']);
-		// MIGHT BE NEEDED: TODO: MERGE: wp_enqueue_style( 'hc-list-style', plugin_dir_url( __FILE__ ) . 'css/hc-list-style1.css' );	
-		wp_enqueue_style( 'components', plugin_dir_url( __FILE__ ) . 'css/components.css' );	
+		wp_enqueue_style( 'important-css', plugin_dir_url( __FILE__ ) . 'css/important-css-overrides.css' );	
+		//wp_enqueue_style( 'components', plugin_dir_url( __FILE__ ) . 'css/components.css' );	
 		//wp_enqueue_style( 'city-page-style', plugin_dir_url( __FILE__ ) . 'css/city-page-style1.css' );	
 		//wp_enqueue_style( 'hc-search-results-theme', plugin_dir_url( __FILE__ ) . 'css/pd_style_blue.css' );	
 		
@@ -470,8 +470,8 @@ function homecards_shortcode( $atts ) {
 		// SEE homecards-oldcode.php -> hc_oldmapsearch() // Temporary reference - not used anymore because we now have an awesome & fully integrated map search (no frame/iframe)
 	} else if ($atts['page'] == "featuredlistings") {
 		//if (get_option('wp_hc_disablecss') != '1') { hc_getStyle_searchresults(); }
-		wp_enqueue_style( 'hc-list-style', plugin_dir_url( __FILE__ ) . 'css/hc-list-style1.css' );
-		wp_enqueue_style( 'components', plugin_dir_url( __FILE__ ) . 'css/components.css' );	
+		wp_enqueue_style( 'important-css', plugin_dir_url( __FILE__ ) . 'css/important-css-overrides.css' );
+		//wp_enqueue_style( 'components', plugin_dir_url( __FILE__ ) . 'css/components.css' );	
 		//wp_enqueue_style( 'hc-search-results-theme', plugin_dir_url( __FILE__ ) . 'css/pd_style_blue.css' );	
 		$html .= $hc_proxy->getFeaturedListings($atts['limit']);
 	}

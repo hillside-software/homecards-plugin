@@ -363,7 +363,7 @@ function hc_addActionForScripts() {
 		wp_enqueue_script( 'happy', plugin_dir_url( __FILE__ ) . 'js/happy.js', array( 'jquery' ) );
 		wp_enqueue_script( 'happy-methods', plugin_dir_url( __FILE__ ) . 'js/happy.methods.js', array( 'jquery' ) );
 		//wp_enqueue_style( 'happy', plugin_dir_url( __FILE__ ) . 'css/happy.css' );
-		wp_enqueue_style('components', plugin_dir_url( __FILE__ ) . 'css/components.css');
+		//wp_enqueue_style('components', plugin_dir_url( __FILE__ ) . 'css/components.css');
 }
 add_action ( 'admin_head', 'hc_addActionForScripts');
 
@@ -827,7 +827,7 @@ function hc_addscripts() {
 	*/
 	//ENQUEUE SCRIPT
 	//wp_enqueue_script( 'hc-autocomplete', plugin_dir_url( __FILE__ ) . 'js/jquery.tokeninput.js', array( 'jquery', 'jquery-ui' ) );	
-	wp_enqueue_style( 'components', plugin_dir_url( __FILE__ ) . 'css/components.css' );
+	//wp_enqueue_style( 'components', plugin_dir_url( __FILE__ ) . 'css/components.css' );
 	wp_enqueue_style( 'hc-websymbols', 'http://www.myhomecards.com/Common/websymbols.css' );
 	if ( ! is_admin() ) { wp_enqueue_style( 'hc-iconic-fill', 'http://www.myhomecards.com/Common/iconic_fill.css' ); }
 	//wp_enqueue_style( 'hc-autocomplete-fb', plugin_dir_url( __FILE__ ) . 'css/token-input-facebook.css' );
