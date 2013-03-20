@@ -480,12 +480,11 @@ if (typeof hc_getPropertyHtml == 'undefined' || hc_getPropertyHtml == null ) {
 			var today = new Date();
 			var stamp = today.getTime();// Returns unix epoch
 			if (("" + timeStampInSeconds).length >= 13) {timeStampInSeconds = 0.001 * timeStampInSeconds;}
-			return ((stamp * 0.001) / 86400) - (timeStampInSeconds / 86400) 
-				+ " days ago";
+			return parseInt(((stamp * 0.001) / 86400) - (timeStampInSeconds / 86400)) + " days ago";
 		}
 		/* TODO: Add inline logic to show save status save  			*/
 		return "<div class='hc-map-infowindow'>\r\n" +
-					 "	<h3><a href=\"javascript: hc_scrollToListingId('" + listing.data('listingid') + "')\">" + listing.data('addr') + "</a> " + jQuery('.hc_price', listing).text() + "</h3>\r\n" +
+					 "	<h3><a href=\"javascript: hc_scrollToListingId('" + listing.data('listingid') + "')\">" + listing.data('addr') + "</a> &#160; &#160; " + jQuery('.hc_price', listing).text() + "</h3>\r\n" +
 					 "	<table cellspacing='0' cellpadding='0' border='0'>\r\n" +
 					 "		<tr>\r\n" +
 					 "			<td valign='top' class='hc-left-col'>\r\n" +
@@ -496,8 +495,8 @@ if (typeof hc_getPropertyHtml == 'undefined' || hc_getPropertyHtml == null ) {
 					 "				<div><b>Subarea:</b> " + listing.data('subarea') + "</div>\r\n" +
 					 "				<div><b>Est. Age:</b> " + convertSecondsToDaysBack(listing.data('listdatesecs')) + "</div>\r\n" +
 					 "				<div><b>MLS#:</b> " + listing.data('listingid') + "</div>\r\n" +
-					 "				<div></div>\r\n" +
-					 "				<div>Presented by: " + jQuery('.hc_bkr', listing).text() + "</div>\r\n" +
+					 "				<div><b>Presented by:</b><br />" + jQuery('.hc_bkr', listing).text() + "</div>\r\n" +
+					 "				<div><img src=\"http://www.myhomecards.com/images/idx.gif\" alt=\"idx logo\" /></div>\r\n" +
 					 "			</td>\r\n" +
 					 "		</tr>\r\n" +
 					 "	</table>\r\n" +

@@ -3,7 +3,7 @@
 Plugin Name: HomeCards IDX Plugin
 Plugin URI: http://www.hillsidesoftware.com/?Src=HC-Plugin
 Description: WORDPRESS PLUGIN FOR HOMECARDS REAL ESTATE AGENTS!
-Version: 1.6.2
+Version: 1.8.1
 Author: Hillside Software, Inc.
 Author URI: http://www.hillsidesoftware.com
 */

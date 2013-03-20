@@ -21,6 +21,7 @@ div.toolbar-container div a:hover { line-height: 39px !important; color: #5e5e5e
 /* Disable the Local Stats Toolbar Button */
 .tb-1 {display: none !important;}
 
+/** Disabled by Dan 2013-03-18 - Not Aligning right on *Many* templates!
 .tb-1 li, .tb-1 a, .tb-1 a:active, .tb-1 a:visited { background: url(images/tb-sprite.png) no-repeat; background-position: 5px -167px; }
 .tb-1 a:hover { background: url(images/tb-sprite.png) no-repeat; background-position: 5px 3px; }
 .tb-2 li, .tb-2 a, .tb-2 a:active, .tb-2 a:visited { background: url(images/tb-sprite.png) no-repeat; background-position: 5px -201px; }
@@ -31,6 +32,7 @@ div.toolbar-container div a:hover { line-height: 39px !important; color: #5e5e5e
 .tb-4 a:hover { background: url(images/tb-sprite.png) no-repeat; background-position: 5px -100px; }		
 .tb-5 li, .tb-5 a, .tb-5 a:active, .tb-5 a:visited { background: url(images/tb-sprite.png) no-repeat; background-position: 5px -304px; }
 .tb-5 a:hover { background: url(images/tb-sprite.png) no-repeat; background-position: 5px -135px; }				
+*/
 
 div.hdr-container { width: 100%; height: 45px; display: block; }
 div.hdr-child-container { display: block; width: 650px; }

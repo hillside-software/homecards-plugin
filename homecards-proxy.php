@@ -79,6 +79,7 @@ function hc_ajax_get_lead_saved_listings() {
 	if ( isset($_REQUEST['LeadToken'])) {$authToken .= '|' . $_REQUEST['LeadToken'];}
 	if (empty($authToken) || strlen($authToken) < 5 ) {
 		echo '{"Message": "Please login.", "Error": "Please login", "Token": "' . $authToken . '", "AuthToken": "' . $_REQUEST['AuthToken'] . '", "LeadToken": "' . $_REQUEST['LeadToken'] . '", "ListingID": "' . $listingID . '"}';
+		exit();
 	}
 	$hc_proxy = new HomeCardsProxy(false);
 	$html = $hc_proxy->getSavedListingsJSON($cid);
@@ -104,6 +105,7 @@ function hc_ajax_lead_save_listing() {
 	if (empty($authToken) || isset($_REQUEST['LeadToken'])) {$authToken .= '|' . $_REQUEST['LeadToken'];}
 	if (empty($authToken) || strlen($authToken) < 5 ) {
 		echo '{"Message": "Please login.", "Error": "Please login", "Token": "' . $authToken . '", "AuthToken": "' . $_REQUEST['AuthToken'] . '", "LeadToken": "' . $_REQUEST['LeadToken'] . '", "ListingID": "' . $listingID . '"}';
+		exit();
 	}
 	$hc_proxy = new HomeCardsProxy(false);
 	$html = $hc_proxy->saveProperty($listingID, $cID, $source, $authToken, $notes);
@@ -126,8 +128,10 @@ function hc_ajax_lead_login() {
 	if (isset($_SERVER['HTTP_X_REQUESTED_WITH'])) {
 		header( "Content-Type: text/javascript" );
 		echo json_encode($leadJSON);
+		exit();
 	}
-	return $leadJSON;
+
+	return $leadJSON . "\n\n\n";
 }
 
 
