@@ -2,7 +2,7 @@
 
 function hc_set($key, $data, $timeoutSecs) {
 	$key .= $_SESSION['mls'];
-	if ( defined("HC_CACHE_MODE") ) { $cacheMode = HC_CACHE_MODE; } else { define("HC_CACHE_MODE", "globals"); $cacheMode = "globals";}
+	if ( defined("HC_CACHE_MODE") ) { $cacheMode = HC_CACHE_MODE; } else { define("HC_CACHE_MODE", "transient"); $cacheMode = "transient";}
 	if ( !isset($timeoutSecs)) { $timeoutSecs = 60*60*12; }
 	$expireTime = time() + $timeoutSecs;
 	if ($cacheMode == 'file' ) {
@@ -38,7 +38,7 @@ function hc_set($key, $data, $timeoutSecs) {
 }
 function hc_get($key, $defaultValue = '') {
 	$key .= $_SESSION['mls'];
-	if ( defined("HC_CACHE_MODE") ) { $cacheMode = HC_CACHE_MODE; } else { define("HC_CACHE_MODE", "globals"); $cacheMode = "globals";}
+	if ( defined("HC_CACHE_MODE") ) { $cacheMode = HC_CACHE_MODE; } else { define("HC_CACHE_MODE", "transient"); $cacheMode = "transient";}
 	if ($cacheMode == 'file' ) {
 		$tmpfname = tempnam("/tmp", "hc_cache_" . $key . '.tmp');
 		if ( file_exists($tmpfname) ) {

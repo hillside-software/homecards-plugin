@@ -3,7 +3,7 @@
 Plugin Name: HomeCards IDX Plugin
 Plugin URI: http://www.hillsidesoftware.com/?Src=HC-Plugin
 Description: WORDPRESS PLUGIN FOR HOMECARDS REAL ESTATE AGENTS!
-Version: 1.8.1
+Version: 1.8.2
 Author: Hillside Software, Inc.
 Author URI: http://www.hillsidesoftware.com
 */
@@ -16,9 +16,11 @@ error_reporting(E_ALL);
 //ini_set('display_errors',1);
 //error_reporting(E_ALL);
 */
-//error_reporting(E_COMPILE_ERROR|E_RECOVERABLE_ERROR|E_ERROR|E_CORE_ERROR);
 
-//ini_set('display_errors',1);
+// COMMENT OUT THE FOLLOWING LINES TO REMOVE ERROR OUTPUT SETTINGS
+error_reporting(E_COMPILE_ERROR|E_RECOVERABLE_ERROR|E_ERROR|E_CORE_ERROR);
+ini_set('display_errors',1);
+
 //error_reporting(E_ALL);
 
 /**
@@ -29,6 +31,7 @@ error_reporting(E_ALL);
 		file: Stores data in php's temp file directory - no timeout support
 		none: disable caching - only use in development - *VERY* SLOW
 **/
+
 define("HC_CACHE_MODE", "transient");
 // Note: Move this stuff later....
 define("HC_BLEEDING_EDGE", true);
