@@ -1,4 +1,7 @@
 <?php
+/*
+IMPORTANT
+*/
 /*!
 Plugin Name: HomeCards IDX Plugin
 Plugin URI: http://www.hillsidesoftware.com/?Src=HC-Plugin

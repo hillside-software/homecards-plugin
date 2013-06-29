@@ -94,7 +94,7 @@ class AdvPropertyDetails {
 			for ($i=0; $i < $counter; $i++ ) { 
 				//$listImage = "http://www.myhomecards.com/GetPhoto.aspx?LN=" . $this->listingId . "&Size=ExtraLarge&PhotoIndex=". $indexPhoto[$i] ."&Board=" . $board->Board;
 				$listImage = "http://www.myhomecards.com/GetPhoto.aspx?PhotoNumber=". $indexPhoto[$i] ."&Size=ExtraLarge&Board=" . $board->Board . "&LN=" . $this->listingId;
-				$html .= "\t\t<li><img src=". $listImage ." /></li>\r\n";
+				$html .= "\t\t<li><img src=\"". $listImage ."\" /></li>\r\n";
 			}
 		$html .="\t</ul>\r\n\t</div>";
 		

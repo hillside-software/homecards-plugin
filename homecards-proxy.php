@@ -1,4 +1,7 @@
 <?php
+/*
+IMPORTANT
+*/
 if (!isset($_SESSION)) { session_start(); }
 
 function hc_getAccountJson() {
